@@ -306,9 +306,6 @@
             "Wroclaw",
             "Warszawa"});
             this.city.FormattingEnabled = true;
-            this.city.Items.AddRange(new object[] {
-            "Wroclaw",
-            "Warszawa"});
             this.city.Location = new System.Drawing.Point(387, 186);
             this.city.Name = "city";
             this.city.Size = new System.Drawing.Size(213, 21);

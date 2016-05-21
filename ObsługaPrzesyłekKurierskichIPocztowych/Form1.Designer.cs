@@ -129,6 +129,7 @@
             this.deleteButton_message.TabIndex = 2;
             this.deleteButton_message.Text = "Usuń";
             this.deleteButton_message.UseVisualStyleBackColor = true;
+            this.deleteButton_message.Click += new System.EventHandler(this.deleteButton_message_Click);
             // 
             // editButton_message
             // 

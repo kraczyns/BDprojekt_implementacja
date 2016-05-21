@@ -35,5 +35,10 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             DB.showDataFromMessage(messageTableView);
         }
 
+        private void deleteButton_message_Click(object sender, EventArgs e)
+        {
+            DB.deleteDataFromMessage(messageTableView);
+        }
+
     }
 }

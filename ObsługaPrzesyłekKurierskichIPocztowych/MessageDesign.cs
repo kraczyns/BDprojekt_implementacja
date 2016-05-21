@@ -15,14 +15,18 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         public MessageDesign()
         {
             InitializeComponent();
+            DB.fillComboBoxWithMessangers(messangersBox);
+            DB.fillComboBoxWithPlaces(city);
         }
+
+        DatabaseAdministration DB = new DatabaseAdministration();
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            DatabaseAdministration DB = new DatabaseAdministration();
+            
             string sendDate = dateSend.Value.ToString("yyyy-MM-dd");
             string receiveDate = dateReceive.Value.ToString("yyyy-MM-dd");
-            DB.insertDataToMessage("kurier", recipientName.Text, recipientSurname.Text, address.Text, city.Text, size.SelectedIndex, status.SelectedIndex, priority.Checked, paymentLater.Checked, Int32.Parse(cost.Text), sendDate, receiveDate);
+            DB.insertDataToMessage(messangersBox.SelectedItem.ToString(), recipientName.Text, recipientSurname.Text, address.Text, city.Text, size.SelectedIndex, status.SelectedIndex, priority.Checked, paymentLater.Checked, Int32.Parse(cost.Text), sendDate, receiveDate);
         }
     }
 }

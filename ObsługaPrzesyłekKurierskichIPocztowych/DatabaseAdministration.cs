@@ -13,9 +13,9 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
 {
     enum status
     {
+        gotowy,
         uKuriera,
-        dostarczono,
-        gotowy
+        dostarczone
     }
 
     public class DatabaseAdministration
@@ -33,7 +33,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
 
         public void showDataFromMessage(DataGridView view)
         {
-            string showQuery = "SELECT id_przesylki AS Numer, odbiorca.imie AS ImięOdbiorcy, odbiorca.nazwisko AS NazwiskoOdbiorcy, kurier.imie AS ImięKuriera, kurier.nazwisko AS NazwiskoKuriera, placowka.adres, rozmiar AS Rozmiar, czy_priorytet AS Priorytet, data_nadania AS DataNadania, data_odbioru AS DataOdbioru, czy_za_pobraniem AS PłatnośćPrzyOdbiorze, należność AS Należność, adres_doreczenia AS AdresDoręczenia, status AS Status FROM przesylka INNER JOIN odbiorca ON przesylka.id_odbiorcy = odbiorca.id_odbiorcy INNER JOIN kurier ON przesylka.id_kuriera = kurier.id_kuriera INNER JOIN placowka ON przesylka.id_placowki_nadania = placowka.id_placowki";
+            string showQuery = "SELECT id_przesylki AS Numer, CONCAT_WS (' ', odbiorca.imie, odbiorca.nazwisko) AS Odbiorca, CONCAT_WS (' ', kurier.imie, kurier.nazwisko) AS Kurier, placowka.adres AS Placówka, rozmiar AS Rozmiar, czy_priorytet AS Priorytet, data_nadania AS DataNadania, data_odbioru AS DataOdbioru, czy_za_pobraniem AS PłatnośćPrzyOdbiorze, należność AS Należność, adres_doreczenia AS AdresDoręczenia, status AS Status FROM przesylka INNER JOIN odbiorca ON przesylka.id_odbiorcy = odbiorca.id_odbiorcy INNER JOIN kurier ON przesylka.id_kuriera = kurier.id_kuriera INNER JOIN placowka ON przesylka.id_placowki_nadania = placowka.id_placowki";
             command = new MySqlCommand(showQuery, connection);
             adapter = new MySqlDataAdapter(command);
             table = new DataTable();
@@ -68,6 +68,18 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             return val;
         }
 
+        private int getIdFromMessanger(string messanger)
+        {
+            string[] words = messanger.Split(' ');
+            string searchQuery = "SELECT id_kuriera FROM kurier WHERE imie= '" + words[0] + "' AND nazwisko = '" + words[1] + "'";
+            command = new MySqlCommand(searchQuery, connection);
+            adapter = new MySqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+            int val = (int)command.ExecuteScalar();
+            return val;
+        }
+
         private string getStatusFromNumber(int _status)
         {
             switch (_status)
@@ -80,7 +92,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
                     {
                         return "u kuriera";
                     }
-                case (int)status.dostarczono:
+                case (int)status.dostarczone:
                     {
                         return "dostarczona";
                     }
@@ -88,13 +100,74 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             return " ";
         }
 
+        public void deleteDataFromMessage(DataGridView view)
+        {
+            try
+            {
+                int value = (int)view.SelectedCells[0].Value;
+                string table_name = "przesylka";
+                try
+                {
+                    string searchQuery = "DELETE FROM " + table_name + " WHERE id_przesylki=" + value + ";";
+                    command = new MySqlCommand(searchQuery, connection);
+                    adapter = new MySqlDataAdapter(command);
+                    table = new DataTable();
+                    adapter.Fill(table);
+                    MessageBox.Show("Usunięto");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Blad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public void fillComboBoxWithMessangers(ComboBox msngComboBox)
+        {
+            string searchQuery = "SELECT CONCAT_WS (' ', imie, nazwisko) AS name from kurier";
+            command = new MySqlCommand(searchQuery, connection);
+            MySqlDataReader DR = command.ExecuteReader();
+
+            while (DR.Read())
+            {
+                msngComboBox.Items.Add(DR[0]);
+            }
+            DR.Close();
+        }
+
+        public void fillComboBoxWithPlaces(ComboBox placesComboBox)
+        {
+            string searchQuery = "SELECT adres from placowka";
+            command = new MySqlCommand(searchQuery, connection);
+            MySqlDataReader DR = command.ExecuteReader();
+
+            while (DR.Read())
+            {
+                placesComboBox.Items.Add(DR[0]);
+            }
+            DR.Close();
+        }
+
         public void insertDataToMessage(string messanger, string recipient_name, string recipient_surname, string address, string city, int size, int status, bool priority, bool paymentAfter, int cost, string sendDate, string receiveDate)
         {
             int cityId = getIdFromCity(city);
             int recipientId = addNewRecipientAndGetId(recipient_name, recipient_surname);
             int _size = size + 1;
+            int msngId = getIdFromMessanger(messanger);
             string _status = getStatusFromNumber(status);
-            string searchQuery = "INSERT INTO przesylka (id_odbiorcy, id_kuriera, id_placowki_nadania, rozmiar, czy_priorytet, data_nadania, data_odbioru, adres_doreczenia, status, należność) VALUES (" + recipientId + ", "+1+", "+cityId+", "+_size+", "+ priority+", '"+sendDate+"', '"+receiveDate+"', '"+address+"', '"+_status+"',"+cost+")";
+            string searchQuery;
+            if (status == 2) // jeżeli przesyłkę dostarczono, istnieje data dostarczenia
+            {
+                searchQuery = "INSERT INTO przesylka (id_odbiorcy, id_kuriera, id_placowki_nadania, rozmiar, czy_priorytet, data_nadania, data_odbioru, adres_doreczenia, status, należność) VALUES (" + recipientId + ", " + msngId + ", " + cityId + ", " + _size + ", " + priority + ", '" + sendDate + "', '" + receiveDate + "', '" + address + "', '" + _status + "'," + cost + ")";
+            }
+            else // jeżeli przesyłki niedostarczono, nie ma daty dostarczenia
+            {
+                searchQuery = "INSERT INTO przesylka (id_odbiorcy, id_kuriera, id_placowki_nadania, rozmiar, czy_priorytet, data_nadania, adres_doreczenia, status, należność) VALUES (" + recipientId + ", " + msngId + ", " + cityId + ", " + _size + ", " + priority + ", '" + sendDate + "', '" + address + "', '" + _status + "'," + cost + ")";
+            }
             command = new MySqlCommand(searchQuery, connection);
             adapter = new MySqlDataAdapter(command);
             table = new DataTable();
