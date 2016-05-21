@@ -54,6 +54,7 @@
             this.deleteButton_graphic = new System.Windows.Forms.Button();
             this.editButton_graphic = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.refreshButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.messageTableView)).BeginInit();
             this.postTab.SuspendLayout();
             this.messageTab.SuspendLayout();
@@ -79,7 +80,7 @@
             this.postTab.Controls.Add(this.messangerTab);
             this.postTab.Controls.Add(this.carTab);
             this.postTab.Controls.Add(this.graphicTab);
-            this.postTab.Location = new System.Drawing.Point(27, 47);
+            this.postTab.Location = new System.Drawing.Point(15, 66);
             this.postTab.Name = "postTab";
             this.postTab.SelectedIndex = 0;
             this.postTab.Size = new System.Drawing.Size(681, 432);
@@ -87,6 +88,7 @@
             // 
             // messageTab
             // 
+            this.messageTab.Controls.Add(this.refreshButton);
             this.messageTab.Controls.Add(this.addButton_message);
             this.messageTab.Controls.Add(this.deleteAllButton_message);
             this.messageTab.Controls.Add(this.messageTableView);
@@ -108,6 +110,7 @@
             this.addButton_message.TabIndex = 4;
             this.addButton_message.Text = "Dodaj";
             this.addButton_message.UseVisualStyleBackColor = true;
+            this.addButton_message.Click += new System.EventHandler(this.addButton_message_Click);
             // 
             // deleteAllButton_message
             // 
@@ -324,6 +327,16 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Obsługa Przesyłek Pocztowych i Kurierskich";
             // 
+            // refreshButton
+            // 
+            this.refreshButton.Location = new System.Drawing.Point(6, 347);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(112, 53);
+            this.refreshButton.TabIndex = 5;
+            this.refreshButton.Text = "Odśwież";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -375,6 +388,7 @@
         private System.Windows.Forms.DataGridView graphicTableView;
         private System.Windows.Forms.Button deleteButton_graphic;
         private System.Windows.Forms.Button editButton_graphic;
+        private System.Windows.Forms.Button refreshButton;
     }
 }
 

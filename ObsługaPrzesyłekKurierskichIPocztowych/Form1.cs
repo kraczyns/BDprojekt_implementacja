@@ -16,41 +16,23 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         public Form1()
         {
             InitializeComponent();
-            showData("przesylka",  messageTableView);
-            showData("kurier", messangerTableView);
-            showData("pojazd", vehicleTableView);
-            showData("grafik", graphicTableView);
-        }
- 
-        MySqlConnection con = new MySqlConnection("datasource = localhost;port = 3306; Initial Catalog = 'poczta'; username = root; password=Stokrotka1");
-        MySqlCommand command;
-        MySqlDataAdapter adapter;
-        DataTable table;
-
-        public void showData(string _table_name, DataGridView view)
-        {
-            string searchQuery = "SELECT * FROM `" + _table_name + "`";
-            command = new MySqlCommand(searchQuery, con);
-            adapter = new MySqlDataAdapter(command);
-            table = new DataTable();
-            adapter.Fill(table);
-            view.DataSource = table;
+            DB.showDataFromMessage(messageTableView);
+            DB.showData("kurier", messangerTableView);
+            DB.showData("pojazd", vehicleTableView);
+            DB.showData("grafik", graphicTableView);
         }
 
-        public void insertData(string value, string _table_name)
+        DatabaseAdministration DB = new DatabaseAdministration();
+
+        private void addButton_message_Click(object sender, EventArgs e)
         {
-            string searchQuery = "INSERT INTO `" + _table_name + "` (adres) VALUES ('" + value + "')";
-            command = new MySqlCommand(searchQuery, con);
-            adapter = new MySqlDataAdapter(command);
-            table = new DataTable();
-            adapter.Fill(table);
-            MessageBox.Show("Dodano");
+            MessageDesign msgForm = new MessageDesign();
+            msgForm.Show();
         }
- 
-        private void insertButton_Click(object sender, EventArgs e)
+
+        private void refreshButton_Click(object sender, EventArgs e)
         {
-            //string value = textBox_Value.Text.ToString();
-            //insertData(value, table_name);
+            DB.showDataFromMessage(messageTableView);
         }
 
     }
