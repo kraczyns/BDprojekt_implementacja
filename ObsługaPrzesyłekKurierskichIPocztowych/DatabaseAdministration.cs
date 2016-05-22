@@ -27,7 +27,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
 
         public DatabaseAdministration()
         {
-            connection = new MySqlConnection("datasource = localhost;port = 3306; Initial Catalog = 'poczta'; username = root; password=Stokrotka1");
+            connection = new MySqlConnection("datasource = localhost;port = 3306; Initial Catalog = 'poczta2'; username = root; password=lynch123");
             connection.Open();
         }
 
@@ -175,7 +175,42 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             MessageBox.Show("Dodano");
 
         }
+        public void editDataInMessage(int id,string messanger, string recipient_name, string recipient_surname, string address, string city, int size, int status, bool priority, bool paymentAfter, int cost, string sendDate, string receiveDate)
+        {
+            int cityId = getIdFromCity(city);
+            int recipientId = addNewRecipientAndGetId(recipient_name, recipient_surname);
+            int _size = size + 1;
+            int msngId = getIdFromMessanger(messanger);
+            string _status = getStatusFromNumber(status);
+            string searchQuery;
 
+            if (status == 2) // jeżeli przesyłkę dostarczono, istnieje data dostarczenia
+            {
+                searchQuery = "UPDATE przesylka SET id_odbiorcy ="+
+                    recipientId+", id_kuriera=" +msngId+
+                ", id_placowki_nadania="+cityId+", rozmiar="+_size+
+                ", czy_priorytet="+priority+", data_nadania='"+sendDate+
+                "', data_odbioru='"+receiveDate+"', adres_doreczenia='"+address+
+                "', status='"+status+"', należność="+cost+" WHERE id_przesylki="+id+";";
+  
+            }
+            else // jeżeli przesyłki niedostarczono, nie ma daty dostarczenia
+            {
+                searchQuery = "UPDATE przesylka SET id_odbiorcy =" +
+                                   recipientId + ", id_kuriera=" + msngId +
+                               ", id_placowki_nadania=" + cityId + ", rozmiar=" + _size +
+                               ", czy_priorytet=" + priority + ", data_nadania='" + sendDate +
+                               "', adres_doreczenia='" + address +
+                               "', status='" + status + "', należność=" + cost + " WHERE id_przesylki=" + id + ";";
+            }
+
+
+            command = new MySqlCommand(searchQuery, connection);
+            adapter = new MySqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+            MessageBox.Show("Zmieniono");
+        }
         public void showData(string _table_name, DataGridView view)
         {
             string searchQuery = "SELECT * FROM `" + _table_name + "`";

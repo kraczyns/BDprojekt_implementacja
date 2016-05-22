@@ -31,6 +31,7 @@
             this.messageTableView = new System.Windows.Forms.DataGridView();
             this.postTab = new System.Windows.Forms.TabControl();
             this.messageTab = new System.Windows.Forms.TabPage();
+            this.refreshButton = new System.Windows.Forms.Button();
             this.addButton_message = new System.Windows.Forms.Button();
             this.deleteAllButton_message = new System.Windows.Forms.Button();
             this.deleteButton_message = new System.Windows.Forms.Button();
@@ -54,7 +55,6 @@
             this.deleteButton_graphic = new System.Windows.Forms.Button();
             this.editButton_graphic = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.refreshButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.messageTableView)).BeginInit();
             this.postTab.SuspendLayout();
             this.messageTab.SuspendLayout();
@@ -102,6 +102,16 @@
             this.messageTab.Text = "Przesyłka";
             this.messageTab.UseVisualStyleBackColor = true;
             // 
+            // refreshButton
+            // 
+            this.refreshButton.Location = new System.Drawing.Point(6, 347);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(112, 53);
+            this.refreshButton.TabIndex = 5;
+            this.refreshButton.Text = "Odśwież";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
+            // 
             // addButton_message
             // 
             this.addButton_message.Location = new System.Drawing.Point(280, 361);
@@ -139,6 +149,7 @@
             this.editButton_message.TabIndex = 1;
             this.editButton_message.Text = "Edytuj";
             this.editButton_message.UseVisualStyleBackColor = true;
+            this.editButton_message.Click += new System.EventHandler(this.editButton_message_Click);
             // 
             // messangerTab
             // 
@@ -327,16 +338,6 @@
             this.label2.Size = new System.Drawing.Size(479, 25);
             this.label2.TabIndex = 4;
             this.label2.Text = "Obsługa Przesyłek Pocztowych i Kurierskich";
-            // 
-            // refreshButton
-            // 
-            this.refreshButton.Location = new System.Drawing.Point(6, 347);
-            this.refreshButton.Name = "refreshButton";
-            this.refreshButton.Size = new System.Drawing.Size(112, 53);
-            this.refreshButton.TabIndex = 5;
-            this.refreshButton.Text = "Odśwież";
-            this.refreshButton.UseVisualStyleBackColor = true;
-            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
             // 
             // Form1
             // 

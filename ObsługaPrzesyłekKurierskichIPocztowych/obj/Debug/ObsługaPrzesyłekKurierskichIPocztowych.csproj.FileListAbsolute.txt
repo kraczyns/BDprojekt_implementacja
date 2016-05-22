@@ -12,3 +12,17 @@ C:\Users\nieop\Desktop\BazyDanych\ObsługaPrzesyłekKurierskichIPocztowych\Obsł
 C:\Users\nieop\Desktop\BazyDanych\ObsługaPrzesyłekKurierskichIPocztowych\ObsługaPrzesyłekKurierskichIPocztowych\obj\Debug\ObsługaPrzesyłekKurierskichIPocztowych.exe
 C:\Users\nieop\Desktop\BazyDanych\ObsługaPrzesyłekKurierskichIPocztowych\ObsługaPrzesyłekKurierskichIPocztowych\obj\Debug\ObsługaPrzesyłekKurierskichIPocztowych.pdb
 C:\Users\nieop\Desktop\BazyDanych\ObsługaPrzesyłekKurierskichIPocztowych\ObsługaPrzesyłekKurierskichIPocztowych\obj\Debug\ObsługaPrzesyłekKurierskichIPocztowych.MessageDesign.resources
+C:\Users\www\Desktop\     \Source codes\BD_projekt\GUI2\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\bin\Debug\ObsługaPrzesyłekKurierskichIPocztowych.exe.config
+C:\Users\www\Desktop\     \Source codes\BD_projekt\GUI2\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\bin\Debug\ObsługaPrzesyłekKurierskichIPocztowych.exe
+C:\Users\www\Desktop\     \Source codes\BD_projekt\GUI2\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\bin\Debug\ObsługaPrzesyłekKurierskichIPocztowych.pdb
+C:\Users\www\Desktop\     \Source codes\BD_projekt\GUI2\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\bin\Debug\EntityFramework.dll
+C:\Users\www\Desktop\     \Source codes\BD_projekt\GUI2\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\www\Desktop\     \Source codes\BD_projekt\GUI2\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\bin\Debug\EntityFramework.xml
+C:\Users\www\Desktop\     \Source codes\BD_projekt\GUI2\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\www\Desktop\     \Source codes\BD_projekt\GUI2\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\obj\Debug\ObsługaPrzesyłekKurierskichIPocztowych.csprojResolveAssemblyReference.cache
+C:\Users\www\Desktop\     \Source codes\BD_projekt\GUI2\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\obj\Debug\ObsługaPrzesyłekKurierskichIPocztowych.Form1.resources
+C:\Users\www\Desktop\     \Source codes\BD_projekt\GUI2\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\obj\Debug\ObsługaPrzesyłekKurierskichIPocztowych.MessageDesign.resources
+C:\Users\www\Desktop\     \Source codes\BD_projekt\GUI2\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\obj\Debug\ObsługaPrzesyłekKurierskichIPocztowych.Properties.Resources.resources
+C:\Users\www\Desktop\     \Source codes\BD_projekt\GUI2\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\obj\Debug\ObsługaPrzesyłekKurierskichIPocztowych.csproj.GenerateResource.Cache
+C:\Users\www\Desktop\     \Source codes\BD_projekt\GUI2\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\obj\Debug\ObsługaPrzesyłekKurierskichIPocztowych.exe
+C:\Users\www\Desktop\     \Source codes\BD_projekt\GUI2\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\obj\Debug\ObsługaPrzesyłekKurierskichIPocztowych.pdb
