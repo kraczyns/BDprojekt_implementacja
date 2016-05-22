@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{43FCA6CC-DAC9-4A9A-8A2F-856C1DBE4E1C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ObsługaPrzesyłekKurierskichIPocztowych</RootNamespace>
     <AssemblyName>ObsługaPrzesyłekKurierskichIPocztowych</AssemblyName>

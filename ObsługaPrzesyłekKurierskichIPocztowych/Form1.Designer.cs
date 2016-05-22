@@ -55,6 +55,7 @@
             this.deleteButton_graphic = new System.Windows.Forms.Button();
             this.editButton_graphic = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.deleteReceivedButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.messageTableView)).BeginInit();
             this.postTab.SuspendLayout();
             this.messageTab.SuspendLayout();
@@ -88,6 +89,7 @@
             // 
             // messageTab
             // 
+            this.messageTab.Controls.Add(this.deleteReceivedButton);
             this.messageTab.Controls.Add(this.refreshButton);
             this.messageTab.Controls.Add(this.addButton_message);
             this.messageTab.Controls.Add(this.deleteAllButton_message);
@@ -124,9 +126,9 @@
             // 
             // deleteAllButton_message
             // 
-            this.deleteAllButton_message.Location = new System.Drawing.Point(411, 296);
+            this.deleteAllButton_message.Location = new System.Drawing.Point(525, 296);
             this.deleteAllButton_message.Name = "deleteAllButton_message";
-            this.deleteAllButton_message.Size = new System.Drawing.Size(140, 54);
+            this.deleteAllButton_message.Size = new System.Drawing.Size(140, 42);
             this.deleteAllButton_message.TabIndex = 3;
             this.deleteAllButton_message.Text = "Usuń wszystko";
             this.deleteAllButton_message.UseVisualStyleBackColor = true;
@@ -339,6 +341,15 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Obsługa Przesyłek Pocztowych i Kurierskich";
             // 
+            // deleteReceivedButton
+            // 
+            this.deleteReceivedButton.Location = new System.Drawing.Point(525, 347);
+            this.deleteReceivedButton.Name = "deleteReceivedButton";
+            this.deleteReceivedButton.Size = new System.Drawing.Size(140, 38);
+            this.deleteReceivedButton.TabIndex = 6;
+            this.deleteReceivedButton.Text = "Usuń dostarczone przesyłki";
+            this.deleteReceivedButton.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -391,6 +402,7 @@
         private System.Windows.Forms.Button deleteButton_graphic;
         private System.Windows.Forms.Button editButton_graphic;
         private System.Windows.Forms.Button refreshButton;
+        private System.Windows.Forms.Button deleteReceivedButton;
     }
 }
 

@@ -28,8 +28,11 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             _editMode = true;
             _id = id;
             InitializeComponent();
-            dateSend.Value = DateTime.ParseExact(sendDate, "yyyy-MM-dd hh:mm:ss", CultureInfo.InvariantCulture);
-            dateReceive.Value = DateTime.ParseExact(receiveDate, "yyyy-MM-dd hh:mm:ss", CultureInfo.InvariantCulture);
+            dateSend.Value = DateTime.ParseExact(sendDate, "dd.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            if (receiveDate != "")
+            {
+                dateReceive.Value = DateTime.ParseExact(receiveDate, "dd.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            }
             status.SelectedIndex = statusIn - 1;
             messangersBox.SelectedItem = messangersBox.FindStringExact(messanger);//messanger;
             messangersBox.Text= messanger;
@@ -72,6 +75,12 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void MessageDesign_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Form1 form = new Form1();
+            form.refresh();
         }
     }
 }

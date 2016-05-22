@@ -27,10 +27,13 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
 
         public DatabaseAdministration()
         {
-            connection = new MySqlConnection("datasource = localhost;port = 3306; Initial Catalog = 'poczta2'; username = root; password=lynch123");
+            connection = new MySqlConnection("datasource = localhost;port = 3306; Initial Catalog = 'poczta'; username = root; password=Stokrotka1");
             connection.Open();
         }
 
+        //OBSŁUGA PRZESYŁKI
+
+        //wyświetlanie tabeli przesyłka
         public void showDataFromMessage(DataGridView view)
         {
             string showQuery = "SELECT id_przesylki AS Numer, CONCAT_WS (' ', odbiorca.imie, odbiorca.nazwisko) AS Odbiorca, CONCAT_WS (' ', kurier.imie, kurier.nazwisko) AS Kurier, placowka.adres AS Placówka, rozmiar AS Rozmiar, czy_priorytet AS Priorytet, data_nadania AS DataNadania, data_odbioru AS DataOdbioru, czy_za_pobraniem AS PłatnośćPrzyOdbiorze, należność AS Należność, adres_doreczenia AS AdresDoręczenia, status AS Status FROM przesylka INNER JOIN odbiorca ON przesylka.id_odbiorcy = odbiorca.id_odbiorcy INNER JOIN kurier ON przesylka.id_kuriera = kurier.id_kuriera INNER JOIN placowka ON przesylka.id_placowki_nadania = placowka.id_placowki";
@@ -41,6 +44,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             view.DataSource = table;
         }
 
+        //dodawanie nowego odbiorcy i zwracanie jego numeru id
         private int addNewRecipientAndGetId(string recipient_name, string recipient_surname)
         {
             string insertQuery = "INSERT INTO odbiorca (imie, nazwisko) VALUES ('" + recipient_name + "', '" + recipient_surname + "')";
@@ -57,6 +61,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             return val;
         }
 
+        //zwracania id placówki, znając adres
         private int getIdFromCity(string city)
         {
             string searchQuery = "SELECT id_placowki FROM placowka WHERE adres = '"+city+"'"; 
@@ -68,6 +73,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             return val;
         }
 
+        //zwracanie id kuriera, znając jego imię i nazwisko
         private int getIdFromMessanger(string messanger)
         {
             string[] words = messanger.Split(' ');
@@ -80,6 +86,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             return val;
         }
 
+        //zwracania string ze statusem, znając index z comboboxa
         private string getStatusFromNumber(int _status)
         {
             switch (_status)
@@ -100,6 +107,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             return " ";
         }
 
+        //kasowanie wybranego rekordu z tabeli przesyłka
         public void deleteDataFromMessage(DataGridView view)
         {
             try
@@ -126,6 +134,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             }
         }
 
+        //wypełnienie comboboxa danymi z tabeli kurier
         public void fillComboBoxWithMessangers(ComboBox msngComboBox)
         {
             string searchQuery = "SELECT CONCAT_WS (' ', imie, nazwisko) AS name from kurier";
@@ -139,6 +148,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             DR.Close();
         }
 
+        //wypełnienie comboboxa danymi z tabeli placówka
         public void fillComboBoxWithPlaces(ComboBox placesComboBox)
         {
             string searchQuery = "SELECT adres from placowka";
@@ -152,6 +162,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             DR.Close();
         }
 
+        //dodanie nowego rekordu do tabeli przesyłka
         public void insertDataToMessage(string messanger, string recipient_name, string recipient_surname, string address, string city, int size, int status, bool priority, bool paymentAfter, int cost, string sendDate, string receiveDate)
         {
             int cityId = getIdFromCity(city);
@@ -175,7 +186,9 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             MessageBox.Show("Dodano");
 
         }
-        public void editDataInMessage(int id,string messanger, string recipient_name, string recipient_surname, string address, string city, int size, int status, bool priority, bool paymentAfter, int cost, string sendDate, string receiveDate)
+       
+        //edycja wybranego rekordu z tabeli przesyłka.
+        public void editDataInMessage(int id, string messanger, string recipient_name, string recipient_surname, string address, string city, int size, int status, bool priority, bool paymentAfter, int cost, string sendDate, string receiveDate)
         {
             int cityId = getIdFromCity(city);
             int recipientId = addNewRecipientAndGetId(recipient_name, recipient_surname);
@@ -191,7 +204,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
                 ", id_placowki_nadania="+cityId+", rozmiar="+_size+
                 ", czy_priorytet="+priority+", data_nadania='"+sendDate+
                 "', data_odbioru='"+receiveDate+"', adres_doreczenia='"+address+
-                "', status='"+status+"', należność="+cost+" WHERE id_przesylki="+id+";";
+                "', status='"+_status+"', należność="+cost+" WHERE id_przesylki="+id+";";
   
             }
             else // jeżeli przesyłki niedostarczono, nie ma daty dostarczenia
@@ -201,7 +214,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
                                ", id_placowki_nadania=" + cityId + ", rozmiar=" + _size +
                                ", czy_priorytet=" + priority + ", data_nadania='" + sendDate +
                                "', adres_doreczenia='" + address +
-                               "', status='" + status + "', należność=" + cost + " WHERE id_przesylki=" + id + ";";
+                               "', status='" + _status + "', należność=" + cost + " WHERE id_przesylki=" + id + ";";
             }
 
 
@@ -211,6 +224,28 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             adapter.Fill(table);
             MessageBox.Show("Zmieniono");
         }
+
+        //kasowanie wszystkich rekordów z tabeli przesyłka
+        public void deleteAllDataFromMessage()
+        {
+            string deleteAllQuery = "DELETE FROM przesylka WHERE id_przesylki > 0";
+            command = new MySqlCommand(deleteAllQuery, connection);
+            adapter = new MySqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+        }
+
+        //kasowanie wszystkich rekordów z tabeli przesyłka, które mają status: dostarczona
+        public void deleteReceivedMessages()
+        {
+            string deleteReceivedQuery = "DELETE FROM przesylka WHERE status = 'dostarczona'";
+            command = new MySqlCommand(deleteReceivedQuery, connection);
+            adapter = new MySqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+        }
+
+        //OGÓLNE FUNKCJE DLA TABEL, bez specyfikacji dla której konkretnie
         public void showData(string _table_name, DataGridView view)
         {
             string searchQuery = "SELECT * FROM `" + _table_name + "`";

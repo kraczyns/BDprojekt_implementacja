@@ -285,11 +285,11 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label1.Location = new System.Drawing.Point(222, 18);
+            this.label1.Location = new System.Drawing.Point(198, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(173, 20);
+            this.label1.Size = new System.Drawing.Size(229, 20);
             this.label1.TabIndex = 87;
-            this.label1.Text = "Dodawanie przesyłki";
+            this.label1.Text = "Dodawanie/edycja przesyłki";
             // 
             // label2
             // 

@@ -28,6 +28,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         {
             MessageDesign msgForm = new MessageDesign();
             msgForm.Show();
+            DB.showDataFromMessage(messageTableView);
         }
 
         private void refreshButton_Click(object sender, EventArgs e)
@@ -35,15 +36,31 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             DB.showDataFromMessage(messageTableView);
         }
 
+        public void refresh()
+        {
+            DB.showDataFromMessage(messageTableView);
+        }
+
         private void deleteButton_message_Click(object sender, EventArgs e)
         {
             DB.deleteDataFromMessage(messageTableView);
+            DB.showDataFromMessage(messageTableView);
+        }
+
+        private void deleteAllButton_message_Click(object sender, EventArgs e)
+        {
+            DB.deleteAllDataFromMessage();
+            DB.showDataFromMessage(messageTableView);
+        }
+
+        private void deleteReceivedButton_Click(object sender, EventArgs e)
+        {
+            DB.deleteReceivedMessages();
+            DB.showDataFromMessage(messageTableView);
         }
 
         private void editButton_message_Click(object sender, EventArgs e)
         {
-            try
-            {
                 int row = messageTableView.CurrentCellAddress.Y;
                 string[] names = messageTableView.Rows[row].Cells[1].Value.ToString().Split(' ');
                 string recipient_name = names[0];
@@ -59,15 +76,8 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
                 string addressIn = messageTableView.Rows[row].Cells[10].Value.ToString();
                 int statusIn = 1;// (int)messageTableView.Rows[row].Cells[11].Value;
                 int id = (int)messageTableView.Rows[row].Cells[0].Value;
-                Console.WriteLine(id);
                 MessageDesign msgForm = new MessageDesign(id, messanger, recipient_name, recipient_surname, addressIn, city_name, sizeIn, statusIn, priorityIn, paymentAfter, costIn, sendDate, receiveDate);
                 msgForm.Show();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
         }
 
     }
