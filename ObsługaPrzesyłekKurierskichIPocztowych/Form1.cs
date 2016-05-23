@@ -80,5 +80,11 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
                 msgForm.Show();
         }
 
+        private void messangerListButton_Click(object sender, EventArgs e)
+        {
+            MessangersTopList msgTopList = new MessangersTopList();
+            msgTopList.Show();
+        }
+
     }
 }

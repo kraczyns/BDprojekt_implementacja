@@ -40,3 +40,4 @@ C:\Users\nieop\Desktop\BazyDanych\GitHub\BDprojekt_implementacja\ObsługaPrzesy�
 C:\Users\nieop\Desktop\BazyDanych\GitHub\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\obj\Debug\ObsługaPrzesyłekKurierskichIPocztowych.MessageDesign.resources
 C:\Users\nieop\Desktop\BazyDanych\GitHub\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\obj\Debug\ObsługaPrzesyłekKurierskichIPocztowych.Properties.Resources.resources
 C:\Users\nieop\Desktop\BazyDanych\GitHub\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\obj\Debug\ObsługaPrzesyłekKurierskichIPocztowych.csproj.GenerateResource.Cache
+C:\Users\nieop\Desktop\BazyDanych\GitHub\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\obj\Debug\ObsługaPrzesyłekKurierskichIPocztowych.MessangersTopList.resources

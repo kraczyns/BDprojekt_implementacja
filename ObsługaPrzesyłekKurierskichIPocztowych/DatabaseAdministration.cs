@@ -18,6 +18,16 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         dostarczone
     }
 
+    enum size
+    {
+        postcard,
+        letter,
+        smallPackage,
+        averagePackage,
+        bigPackage,
+        giganticPackage
+    }
+
     public class DatabaseAdministration
     {
         MySqlConnection connection;
@@ -36,7 +46,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         //wyświetlanie tabeli przesyłka
         public void showDataFromMessage(DataGridView view)
         {
-            string showQuery = "SELECT id_przesylki AS Numer, CONCAT_WS (' ', odbiorca.imie, odbiorca.nazwisko) AS Odbiorca, CONCAT_WS (' ', kurier.imie, kurier.nazwisko) AS Kurier, placowka.adres AS Placówka, rozmiar AS Rozmiar, czy_priorytet AS Priorytet, data_nadania AS DataNadania, data_odbioru AS DataOdbioru, czy_za_pobraniem AS PłatnośćPrzyOdbiorze, należność AS Należność, adres_doreczenia AS AdresDoręczenia, status AS Status FROM przesylka INNER JOIN odbiorca ON przesylka.id_odbiorcy = odbiorca.id_odbiorcy INNER JOIN kurier ON przesylka.id_kuriera = kurier.id_kuriera INNER JOIN placowka ON przesylka.id_placowki_nadania = placowka.id_placowki";
+            string showQuery = "SELECT id_przesylki AS Numer, CONCAT_WS (' ', odbiorca.imie, odbiorca.nazwisko) AS Odbiorca, CONCAT_WS (' ', kurier.imie, kurier.nazwisko) AS Kurier, placowka.adres AS Placówka, rozmiar AS Rozmiar, czy_priorytet AS Priorytet, data_nadania AS 'Data Nadania', data_odbioru AS 'Data Odbioru', czy_za_pobraniem AS 'Płatność Przy Odbiorze', należność AS 'Należność', adres_doreczenia AS 'Adres Doręczenia', status AS Status FROM przesylka INNER JOIN odbiorca ON przesylka.id_odbiorcy = odbiorca.id_odbiorcy INNER JOIN kurier ON przesylka.id_kuriera = kurier.id_kuriera INNER JOIN placowka ON przesylka.id_placowki_nadania = placowka.id_placowki";
             command = new MySqlCommand(showQuery, connection);
             adapter = new MySqlDataAdapter(command);
             table = new DataTable();
@@ -86,7 +96,28 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             return val;
         }
 
-        //zwracania string ze statusem, znając index z comboboxa
+        //zwracanie string z rozmiarem, znając index
+        private string getSizeFromId(int _id)
+        {
+            switch (_id)
+            {
+                case (int)size.postcard:
+                    return "Pocztówka";
+                case (int)size.letter:
+                    return "List";
+                case (int)size.smallPackage:
+                    return "Mała paczka";
+                case (int)size.averagePackage:
+                    return "Średnia paczka";
+                case (int)size.bigPackage:
+                    return "Duża paczka";
+                case (int)size.giganticPackage:
+                    return "Wielka paczka";
+            }
+            return "";
+        }
+
+        //zwracanie string ze statusem, znając index z comboboxa
         private string getStatusFromNumber(int _status)
         {
             switch (_status)
@@ -243,6 +274,30 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             adapter = new MySqlDataAdapter(command);
             table = new DataTable();
             adapter.Fill(table);
+        }
+
+        //wyświetlanie listy kurierów w kolejności od tego, który dostarczył najwięcej przesyłek
+        public void showTheBestMessangers(DataGridView view)
+        {
+            string showListQuery = "SELECT COUNT(*) 'Dostarczone Przesyłki', CONCAT_WS(' ', kurier.imie, kurier.nazwisko) AS Kurier FROM przesylka INNER JOIN kurier ON przesylka.id_kuriera = kurier.id_kuriera WHERE przesylka.status = 'dostarczona' GROUP BY Kurier ORDER BY 'Dostarczone Przesyłki' DESC";
+            command = new MySqlCommand(showListQuery, connection);
+            adapter = new MySqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+            view.DataSource = table;
+        }
+
+        //wybranie kuriera, który ma najmniej przesyłek aktualnie u siebie - gotowych i u kurierach
+        public string findTheMostAvailableMessanger()
+        {
+            string msng = "";
+            string searchQuery = "SELECT CONCAT_WS(' ', kurier.imie, kurier.nazwisko) AS Kurier, COUNT(*) Przesyłki FROM przesylka INNER JOIN kurier ON kurier.id_kuriera = przesylka.id_kuriera WHERE przesylka.status = 'u kuriera' OR przesylka.status = 'gotowa' GROUP BY Kurier ORDER BY Przesyłki ASC LIMIT 1;";
+            command = new MySqlCommand(searchQuery, connection);
+            MySqlDataReader DR = command.ExecuteReader();
+            DR.Read();
+            msng = DR[0].ToString();
+            DR.Close();
+            return msng;
         }
 
         //OGÓLNE FUNKCJE DLA TABEL, bez specyfikacji dla której konkretnie

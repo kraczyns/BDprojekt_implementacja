@@ -54,6 +54,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.city = new System.Windows.Forms.ComboBox();
+            this.messangerWithFewerJobButton = new System.Windows.Forms.Button();
+            this.messangerFound = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.adressBox.SuspendLayout();
             this.recipientBox.SuspendLayout();
             this.SuspendLayout();
@@ -158,7 +161,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(186, 65);
+            this.label8.Location = new System.Drawing.Point(27, 66);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(34, 13);
             this.label8.TabIndex = 76;
@@ -176,7 +179,7 @@
             // messangersBox
             // 
             this.messangersBox.FormattingEnabled = true;
-            this.messangersBox.Location = new System.Drawing.Point(251, 65);
+            this.messangersBox.Location = new System.Drawing.Point(76, 63);
             this.messangersBox.Name = "messangersBox";
             this.messangersBox.Size = new System.Drawing.Size(188, 21);
             this.messangersBox.TabIndex = 77;
@@ -311,11 +314,40 @@
             this.city.Size = new System.Drawing.Size(213, 21);
             this.city.TabIndex = 89;
             // 
+            // messangerWithFewerJobButton
+            // 
+            this.messangerWithFewerJobButton.Location = new System.Drawing.Point(351, 45);
+            this.messangerWithFewerJobButton.Name = "messangerWithFewerJobButton";
+            this.messangerWithFewerJobButton.Size = new System.Drawing.Size(192, 34);
+            this.messangerWithFewerJobButton.TabIndex = 90;
+            this.messangerWithFewerJobButton.Text = "Kurier z najmniejszą liczbą zleceń";
+            this.messangerWithFewerJobButton.UseVisualStyleBackColor = true;
+            this.messangerWithFewerJobButton.Click += new System.EventHandler(this.messangerWithFewerJobButton_Click);
+            // 
+            // messangerFound
+            // 
+            this.messangerFound.Location = new System.Drawing.Point(351, 85);
+            this.messangerFound.Name = "messangerFound";
+            this.messangerFound.Size = new System.Drawing.Size(192, 20);
+            this.messangerFound.TabIndex = 91;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(291, 70);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(28, 13);
+            this.label3.TabIndex = 92;
+            this.label3.Text = "LUB";
+            // 
             // MessageDesign
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(614, 408);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.messangerFound);
+            this.Controls.Add(this.messangerWithFewerJobButton);
             this.Controls.Add(this.city);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -375,5 +407,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox city;
+        private System.Windows.Forms.Button messangerWithFewerJobButton;
+        private System.Windows.Forms.TextBox messangerFound;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -31,6 +31,7 @@
             this.messageTableView = new System.Windows.Forms.DataGridView();
             this.postTab = new System.Windows.Forms.TabControl();
             this.messageTab = new System.Windows.Forms.TabPage();
+            this.deleteReceivedButton = new System.Windows.Forms.Button();
             this.refreshButton = new System.Windows.Forms.Button();
             this.addButton_message = new System.Windows.Forms.Button();
             this.deleteAllButton_message = new System.Windows.Forms.Button();
@@ -55,7 +56,7 @@
             this.deleteButton_graphic = new System.Windows.Forms.Button();
             this.editButton_graphic = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.deleteReceivedButton = new System.Windows.Forms.Button();
+            this.messangerListButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.messageTableView)).BeginInit();
             this.postTab.SuspendLayout();
             this.messageTab.SuspendLayout();
@@ -81,7 +82,7 @@
             this.postTab.Controls.Add(this.messangerTab);
             this.postTab.Controls.Add(this.carTab);
             this.postTab.Controls.Add(this.graphicTab);
-            this.postTab.Location = new System.Drawing.Point(15, 66);
+            this.postTab.Location = new System.Drawing.Point(23, 114);
             this.postTab.Name = "postTab";
             this.postTab.SelectedIndex = 0;
             this.postTab.Size = new System.Drawing.Size(681, 432);
@@ -103,6 +104,15 @@
             this.messageTab.TabIndex = 0;
             this.messageTab.Text = "Przesyłka";
             this.messageTab.UseVisualStyleBackColor = true;
+            // 
+            // deleteReceivedButton
+            // 
+            this.deleteReceivedButton.Location = new System.Drawing.Point(525, 347);
+            this.deleteReceivedButton.Name = "deleteReceivedButton";
+            this.deleteReceivedButton.Size = new System.Drawing.Size(140, 38);
+            this.deleteReceivedButton.TabIndex = 6;
+            this.deleteReceivedButton.Text = "Usuń dostarczone przesyłki";
+            this.deleteReceivedButton.UseVisualStyleBackColor = true;
             // 
             // refreshButton
             // 
@@ -341,20 +351,22 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Obsługa Przesyłek Pocztowych i Kurierskich";
             // 
-            // deleteReceivedButton
+            // messangerListButton
             // 
-            this.deleteReceivedButton.Location = new System.Drawing.Point(525, 347);
-            this.deleteReceivedButton.Name = "deleteReceivedButton";
-            this.deleteReceivedButton.Size = new System.Drawing.Size(140, 38);
-            this.deleteReceivedButton.TabIndex = 6;
-            this.deleteReceivedButton.Text = "Usuń dostarczone przesyłki";
-            this.deleteReceivedButton.UseVisualStyleBackColor = true;
+            this.messangerListButton.Location = new System.Drawing.Point(228, 54);
+            this.messangerListButton.Name = "messangerListButton";
+            this.messangerListButton.Size = new System.Drawing.Size(256, 36);
+            this.messangerListButton.TabIndex = 6;
+            this.messangerListButton.Text = "Ranking kurierów";
+            this.messangerListButton.UseVisualStyleBackColor = true;
+            this.messangerListButton.Click += new System.EventHandler(this.messangerListButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(708, 526);
+            this.ClientSize = new System.Drawing.Size(716, 558);
+            this.Controls.Add(this.messangerListButton);
             this.Controls.Add(this.postTab);
             this.Controls.Add(this.label2);
             this.Name = "Form1";
@@ -403,6 +415,7 @@
         private System.Windows.Forms.Button editButton_graphic;
         private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.Button deleteReceivedButton;
+        private System.Windows.Forms.Button messangerListButton;
     }
 }
 

@@ -15,6 +15,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
     public partial class MessageDesign : Form
     {
         private bool _editMode = false;
+        private bool msngAuto = false;
         private int _id;
         public MessageDesign()
         {
@@ -57,7 +58,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
 
             string sendDate = dateSend.Value.ToString("yyyy-MM-dd");
             string receiveDate = dateReceive.Value.ToString("yyyy-MM-dd");
-            string payCost = "0";
+            string payCost = cost.Text;
             bool payLater = false;
             if (paymentLater.Checked)
             {
@@ -67,7 +68,15 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             try
             {
                 if (!_editMode)
-                    DB.insertDataToMessage(messangersBox.Text.ToString(), recipientName.Text, recipientSurname.Text, address.Text, city.Text, size.SelectedIndex, status.SelectedIndex, priority.Checked, payLater, Int32.Parse(payCost), sendDate, receiveDate);
+                {
+                    string msng = "";
+                    if (!msngAuto)
+                        msng = messangersBox.Text;
+                    else
+                        msng = messangerFound.Text;
+                    DB.insertDataToMessage(msng, recipientName.Text, recipientSurname.Text, address.Text, city.Text, size.SelectedIndex, status.SelectedIndex, priority.Checked, payLater, Int32.Parse(payCost), sendDate, receiveDate);
+                }
+                    
                 else
                     DB.editDataInMessage(_id, messangersBox.Text.ToString(), recipientName.Text, recipientSurname.Text, address.Text, city.Text, size.SelectedIndex, status.SelectedIndex, priority.Checked, payLater, Int32.Parse(payCost), sendDate, receiveDate);
             }
@@ -81,6 +90,12 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         {
             Form1 form = new Form1();
             form.refresh();
+        }
+
+        private void messangerWithFewerJobButton_Click(object sender, EventArgs e)
+        {
+            messangerFound.Text = DB.findTheMostAvailableMessanger();
+            msngAuto = true;
         }
     }
 }
