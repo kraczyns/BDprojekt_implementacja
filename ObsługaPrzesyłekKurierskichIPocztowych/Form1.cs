@@ -17,9 +17,10 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         {
             InitializeComponent();
             DB.showDataFromMessage(messageTableView);
-            DB.showData("kurier", messangerTableView);
+            DB.showDataFromMessenger(messangerTableView);
             DB.showData("pojazd", vehicleTableView);
             DB.showData("grafik", graphicTableView);
+
         }
 
         DatabaseAdministration DB = new DatabaseAdministration();
@@ -84,6 +85,39 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         {
             MessangersTopList msgTopList = new MessangersTopList();
             msgTopList.Show();
+        }
+
+        private void addButton_messanger_Click(object sender, EventArgs e)
+        {
+            MessengerDesign msgrForm = new MessengerDesign();
+            msgrForm.ShowDialog();
+            DB.showDataFromMessenger(messangerTableView);
+        }
+
+        private void editButton_messanger_Click(object sender, EventArgs e)
+        {
+            int row = messangerTableView.CurrentCellAddress.Y;
+
+            string name = messangerTableView.Rows[row].Cells[1].Value.ToString();
+            string surname = messangerTableView.Rows[row].Cells[2].Value.ToString();
+            string city_name = messangerTableView.Rows[row].Cells[3].Value.ToString();
+            int id = (int)messangerTableView.Rows[row].Cells[0].Value;
+            MessengerDesign msgForm = new MessengerDesign(id, name, surname, city_name);
+            msgForm.ShowDialog();
+            DB.showDataFromMessenger(messangerTableView);
+
+        }
+
+        private void deleteButton_messanger_Click(object sender, EventArgs e)
+        {
+            DB.deleteDataFromMessenger(messangerTableView);
+            DB.showDataFromMessenger(messangerTableView);
+        }
+
+        private void deleteAllButton_messanger_Click(object sender, EventArgs e)
+        {
+            DB.deleteAllDataFromMessenger();
+            DB.showDataFromMessenger(messangerTableView);
         }
 
     }

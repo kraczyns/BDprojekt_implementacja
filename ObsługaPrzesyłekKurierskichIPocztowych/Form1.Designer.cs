@@ -186,6 +186,7 @@
             this.addButton_messanger.TabIndex = 9;
             this.addButton_messanger.Text = "Dodaj";
             this.addButton_messanger.UseVisualStyleBackColor = true;
+            this.addButton_messanger.Click += new System.EventHandler(this.addButton_messanger_Click);
             // 
             // deleteAllButton_messanger
             // 
@@ -195,6 +196,7 @@
             this.deleteAllButton_messanger.TabIndex = 7;
             this.deleteAllButton_messanger.Text = "Usuń wszystko";
             this.deleteAllButton_messanger.UseVisualStyleBackColor = true;
+            this.deleteAllButton_messanger.Click += new System.EventHandler(this.deleteAllButton_messanger_Click);
             // 
             // messangerTableView
             // 
@@ -212,6 +214,7 @@
             this.deleteButton_messanger.TabIndex = 6;
             this.deleteButton_messanger.Text = "Usuń";
             this.deleteButton_messanger.UseVisualStyleBackColor = true;
+            this.deleteButton_messanger.Click += new System.EventHandler(this.deleteButton_messanger_Click);
             // 
             // editButton_messanger
             // 
@@ -221,6 +224,7 @@
             this.editButton_messanger.TabIndex = 5;
             this.editButton_messanger.Text = "Edytuj";
             this.editButton_messanger.UseVisualStyleBackColor = true;
+            this.editButton_messanger.Click += new System.EventHandler(this.editButton_messanger_Click);
             // 
             // carTab
             // 

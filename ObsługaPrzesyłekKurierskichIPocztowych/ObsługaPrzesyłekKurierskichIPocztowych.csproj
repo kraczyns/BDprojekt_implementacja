@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{43FCA6CC-DAC9-4A9A-8A2F-856C1DBE4E1C}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ObsługaPrzesyłekKurierskichIPocztowych</RootNamespace>
     <AssemblyName>ObsługaPrzesyłekKurierskichIPocztowych</AssemblyName>
@@ -74,6 +74,12 @@
     <Compile Include="MessangersTopList.Designer.cs">
       <DependentUpon>MessangersTopList.cs</DependentUpon>
     </Compile>
+    <Compile Include="MessengerDesign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessengerDesign.Designer.cs">
+      <DependentUpon>MessengerDesign.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -84,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MessangersTopList.resx">
       <DependentUpon>MessangersTopList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessengerDesign.resx">
+      <DependentUpon>MessengerDesign.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
