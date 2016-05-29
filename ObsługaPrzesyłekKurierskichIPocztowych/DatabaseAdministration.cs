@@ -393,7 +393,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         {
             try
             {
-                string deleteAllQuery = "DELETE FROM kurier WHERE id_kuriera > 0";
+                string deleteAllQuery = "DELETE FROM kurier WHERE id_kuriera NOT IN (SELECT id_kuriera FROM przesylka) ";
                 command = new MySqlCommand(deleteAllQuery, connection);
                 adapter = new MySqlDataAdapter(command);
                 table = new DataTable();
