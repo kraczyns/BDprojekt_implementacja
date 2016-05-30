@@ -38,7 +38,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         //otworzenie odpowiedniej bazy danych przez MySqlConnection
         public DatabaseAdministration()
         {
-            connection = new MySqlConnection("datasource = localhost;port = 3306; Initial Catalog = 'poczta'; username = root; password=Stokrotka1");
+            connection = new MySqlConnection("datasource = localhost;port = 3306; Initial Catalog = 'poczta2'; username = root; password=lynch123");
             connection.Open();
         }
 
@@ -75,7 +75,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         //zwracania id placówki, znając adres
         private int getIdFromCity(string city)
         {
-            string searchQuery = "SELECT id_placowki FROM placowka WHERE adres = '"+city+"'"; 
+            string searchQuery = "SELECT id_placowki FROM placowka WHERE adres = '" + city + "'";
             command = new MySqlCommand(searchQuery, connection);
             adapter = new MySqlDataAdapter(command);
             table = new DataTable();
@@ -218,7 +218,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             MessageBox.Show("Dodano");
 
         }
-       
+
         //edycja wybranego rekordu z tabeli przesyłka.
         public void editDataInMessage(int id, string messanger, string recipient_name, string recipient_surname, string address, string city, int size, int status, bool priority, bool paymentAfter, int cost, string sendDate, string receiveDate)
         {
@@ -231,13 +231,13 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
 
             if (status == 2) // jeżeli przesyłkę dostarczono, istnieje data dostarczenia
             {
-                searchQuery = "UPDATE przesylka SET id_odbiorcy ="+
-                    recipientId+", id_kuriera=" +msngId+
-                ", id_placowki_nadania="+cityId+", rozmiar="+_size+
-                ", czy_priorytet="+priority+", data_nadania='"+sendDate+
-                "', data_odbioru='"+receiveDate+"', adres_doreczenia='"+address+
-                "', status='"+_status+"', należność="+cost+" WHERE id_przesylki="+id+";";
-  
+                searchQuery = "UPDATE przesylka SET id_odbiorcy =" +
+                    recipientId + ", id_kuriera=" + msngId +
+                ", id_placowki_nadania=" + cityId + ", rozmiar=" + _size +
+                ", czy_priorytet=" + priority + ", data_nadania='" + sendDate +
+                "', data_odbioru='" + receiveDate + "', adres_doreczenia='" + address +
+                "', status='" + _status + "', należność=" + cost + " WHERE id_przesylki=" + id + ";";
+
             }
             else // jeżeli przesyłki niedostarczono, nie ma daty dostarczenia
             {
@@ -260,11 +260,21 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         //kasowanie wszystkich rekordów z tabeli przesyłka
         public void deleteAllDataFromMessage()
         {
-            string deleteAllQuery = "DELETE FROM przesylka WHERE id_przesylki > 0";
-            command = new MySqlCommand(deleteAllQuery, connection);
-            adapter = new MySqlDataAdapter(command);
-            table = new DataTable();
-            adapter.Fill(table);
+            try
+            {
+                string deleteAllQuery = "DELETE FROM przesylka WHERE id_przesylki>0;";
+                //            string deleteAllQuery = "DELETE FROM przesylka WHERE data_odbioru IS NOT NULL";
+                Console.WriteLine("sup");
+                command = new MySqlCommand(deleteAllQuery, connection);
+                adapter = new MySqlDataAdapter(command);
+                table = new DataTable();
+                adapter.Fill(table);
+                MessageBox.Show("Usunięto");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Blad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         //kasowanie wszystkich rekordów z tabeli przesyłka, które mają status: dostarczona
@@ -338,6 +348,170 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             table = new DataTable();
             adapter.Fill(table);
             MessageBox.Show("Dodano");
+        }
+
+        //kurier
+        public void insertDataToMessanger(string name, string surname, string city)
+        {
+            string searchQuery;
+            int cityId = getIdFromCity(city);
+            Console.WriteLine(name + " " + surname + " " + cityId);
+            searchQuery = "INSERT INTO kurier (imie, nazwisko, id_placowki) VALUES ('" + name + "', '" + surname + "', " + cityId + ")";
+
+            command = new MySqlCommand(searchQuery, connection);
+            adapter = new MySqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+            MessageBox.Show("Dodano");
+
+        }
+
+        public void editDataInMessanger(int id, string name, string surname, string city)
+        {
+            int cityId = getIdFromCity(city);
+            string searchQuery;
+            searchQuery = "UPDATE kurier SET imie ='" + name + "', nazwisko='" + surname + "', id_placowki=" + cityId + " WHERE id_kuriera=" + id + ";";
+
+
+            command = new MySqlCommand(searchQuery, connection);
+            adapter = new MySqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+            MessageBox.Show("Zmieniono");
+        }
+
+        public void showDataFromMessenger(DataGridView view)
+        {
+            string showQuery = "SELECT id_kuriera AS ID,imie AS Imie, nazwisko AS Nazwisko, placowka.adres AS Placówka FROM kurier INNER JOIN placowka ON kurier.id_placowki = placowka.id_placowki";
+            // string showQuery = "SELECT  status AS Status FROM przesylka INNER JOIN odbiorca ON przesylka.id_odbiorcy = odbiorca.id_odbiorcy INNER JOIN kurier ON przesylka.id_kuriera = kurier.id_kuriera INNER JOIN placowka ON przesylka.id_placowki_nadania = placowka.id_placowki";
+
+            command = new MySqlCommand(showQuery, connection);
+            adapter = new MySqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+            view.DataSource = table;
+        }
+
+        public void deleteDataFromMessenger(DataGridView view)
+        {
+            try
+            {
+                int value = (int)view.SelectedCells[0].Value;
+                string table_name = "kurier";
+                try
+                {
+                    string searchQuery = "DELETE FROM " + table_name + " WHERE id_kuriera=" + value + ";";
+                    command = new MySqlCommand(searchQuery, connection);
+                    adapter = new MySqlDataAdapter(command);
+                    table = new DataTable();
+                    adapter.Fill(table);
+                    MessageBox.Show("Usunięto");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Blad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public void deleteAllDataFromMessenger()
+        {
+            try
+            {
+                string deleteAllQuery = "DELETE FROM kurier WHERE id_kuriera NOT IN (SELECT id_kuriera FROM przesylka) ";
+                command = new MySqlCommand(deleteAllQuery, connection);
+                adapter = new MySqlDataAdapter(command);
+                table = new DataTable();
+                adapter.Fill(table);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Blad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //odbiorca
+        public void insertDataToOdbiorca(string name, string surname)
+        {
+            string searchQuery;
+            searchQuery = "INSERT INTO odbiorca (imie, nazwisko) VALUES ('" + name + "', '" + surname + "')";
+
+            command = new MySqlCommand(searchQuery, connection);
+            adapter = new MySqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+            MessageBox.Show("Dodano");
+
+        }
+
+        public void editDataInOdbiorca(int id, string name, string surname)
+        {
+            string searchQuery;
+            searchQuery = "UPDATE odbiorca SET imie ='" + name + "', nazwisko='" + surname + "' WHERE id_odbiorcy=" + id + ";";
+
+
+            command = new MySqlCommand(searchQuery, connection);
+            adapter = new MySqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+            MessageBox.Show("Zmieniono");
+        }
+
+        public void showDataFromOdbiorca(DataGridView view)
+        {
+            string showQuery = "SELECT id_odbiorcy AS ID,imie AS Imie, nazwisko AS Nazwisko FROM odbiorca";
+
+            command = new MySqlCommand(showQuery, connection);
+            adapter = new MySqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+            view.DataSource = table;
+        }
+
+        public void deleteDataFromOdbiorca(DataGridView view)
+        {
+            try
+            {
+                int value = (int)view.SelectedCells[0].Value;
+                string table_name = "odbiorca";
+                try
+                {
+                    string searchQuery = "DELETE FROM " + table_name + " WHERE id_odbiorcy=" + value + ";";
+                    command = new MySqlCommand(searchQuery, connection);
+                    adapter = new MySqlDataAdapter(command);
+                    table = new DataTable();
+                    adapter.Fill(table);
+                    MessageBox.Show("Usunięto");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Blad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public void deleteAllDataFromOdbiorca()
+        {
+            try
+            {
+                string deleteAllQuery = "DELETE FROM odbiorca WHERE id_odbiorcy NOT IN (SELECT id_odbiorcy FROM przesylka) ";
+                command = new MySqlCommand(deleteAllQuery, connection);
+                adapter = new MySqlDataAdapter(command);
+                table = new DataTable();
+                adapter.Fill(table);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Blad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

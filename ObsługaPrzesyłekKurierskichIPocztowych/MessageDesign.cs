@@ -58,6 +58,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
 
             string sendDate = dateSend.Value.ToString("yyyy-MM-dd");
             string receiveDate = dateReceive.Value.ToString("yyyy-MM-dd");
+            Console.WriteLine(receiveDate);
             string payCost = cost.Text;
             bool payLater = false;
             if (paymentLater.Checked)
