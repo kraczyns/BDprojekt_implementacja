@@ -58,3 +58,5 @@ C:\Users\www\Desktop\     \Source codes\BD_projekt\GUI\BDprojekt_implementa
 C:\Users\www\Desktop\     \Source codes\BD_projekt\GUI\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\obj\Debug\ObsługaPrzesyłekKurierskichIPocztowych.csproj.GenerateResource.Cache
 C:\Users\www\Desktop\     \Source codes\BD_projekt\GUI\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\obj\Debug\ObsługaPrzesyłekKurierskichIPocztowych.MessengerDesign.resources
 C:\Users\www\Desktop\     \Source codes\BD_projekt\GUI\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\obj\Debug\ObsługaPrzesyłekKurierskichIPocztowych.OdbiorcaDesign.resources
+C:\Users\nieop\Desktop\BazyDanych\GitHub\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\obj\Debug\ObsługaPrzesyłekKurierskichIPocztowych.MessengerDesign.resources
+C:\Users\nieop\Desktop\BazyDanych\GitHub\BDprojekt_implementacja\ObsługaPrzesyłekKurierskichIPocztowych\obj\Debug\ObsługaPrzesyłekKurierskichIPocztowych.OdbiorcaDesign.resources

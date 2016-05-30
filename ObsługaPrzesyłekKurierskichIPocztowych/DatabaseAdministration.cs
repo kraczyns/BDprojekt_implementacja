@@ -38,7 +38,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         //otworzenie odpowiedniej bazy danych przez MySqlConnection
         public DatabaseAdministration()
         {
-            connection = new MySqlConnection("datasource = localhost;port = 3306; Initial Catalog = 'poczta2'; username = root; password=lynch123");
+            connection = new MySqlConnection("datasource = localhost;port = 3306; Initial Catalog = 'poczta'; username = root; password=Stokrotka1");
             connection.Open();
         }
 
@@ -382,7 +382,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
 
         public void showDataFromMessenger(DataGridView view)
         {
-            string showQuery = "SELECT id_kuriera AS ID,imie AS Imie, nazwisko AS Nazwisko, placowka.adres AS Placówka FROM kurier INNER JOIN placowka ON kurier.id_placowki = placowka.id_placowki";
+            string showQuery = "SELECT id_kuriera AS ID, imie AS Imię, nazwisko AS Nazwisko, placowka.adres AS Placówka FROM kurier INNER JOIN placowka ON kurier.id_placowki = placowka.id_placowki";
             // string showQuery = "SELECT  status AS Status FROM przesylka INNER JOIN odbiorca ON przesylka.id_odbiorcy = odbiorca.id_odbiorcy INNER JOIN kurier ON przesylka.id_kuriera = kurier.id_kuriera INNER JOIN placowka ON przesylka.id_placowki_nadania = placowka.id_placowki";
 
             command = new MySqlCommand(showQuery, connection);

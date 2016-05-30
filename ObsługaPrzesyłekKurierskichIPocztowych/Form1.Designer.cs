@@ -79,13 +79,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.vehicleTableView)).BeginInit();
             this.graphicTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.graphicTableView)).BeginInit();
-<<<<<<< HEAD
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-=======
             this.odbiorcaTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.odbiorcaTableView)).BeginInit();
->>>>>>> origin/master
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // messageTableView
@@ -102,12 +99,8 @@
             this.postTab.Controls.Add(this.messangerTab);
             this.postTab.Controls.Add(this.carTab);
             this.postTab.Controls.Add(this.graphicTab);
-<<<<<<< HEAD
-            this.postTab.Location = new System.Drawing.Point(23, 171);
-=======
             this.postTab.Controls.Add(this.odbiorcaTab);
-            this.postTab.Location = new System.Drawing.Point(23, 114);
->>>>>>> origin/master
+            this.postTab.Location = new System.Drawing.Point(23, 184);
             this.postTab.Name = "postTab";
             this.postTab.SelectedIndex = 0;
             this.postTab.Size = new System.Drawing.Size(681, 432);
@@ -527,7 +520,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(716, 615);
+            this.ClientSize = new System.Drawing.Size(719, 627);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.messangerListButton);
@@ -544,14 +537,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.vehicleTableView)).EndInit();
             this.graphicTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.graphicTableView)).EndInit();
-<<<<<<< HEAD
+            this.odbiorcaTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.odbiorcaTableView)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-=======
-            this.odbiorcaTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.odbiorcaTableView)).EndInit();
->>>>>>> origin/master
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -588,7 +578,6 @@
         private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.Button deleteReceivedButton;
         private System.Windows.Forms.Button messangerListButton;
-<<<<<<< HEAD
         private System.Windows.Forms.Label searchForMessanger;
         private System.Windows.Forms.TextBox messangerPattern;
         private System.Windows.Forms.Button searchMessangerButton;
@@ -596,14 +585,13 @@
         private System.Windows.Forms.Button readyMessagesButton;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-=======
         private System.Windows.Forms.TabPage odbiorcaTab;
         private System.Windows.Forms.Button addButton_odbiorca;
         private System.Windows.Forms.Button deleteAllButton_odbiorca;
         private System.Windows.Forms.DataGridView odbiorcaTableView;
         private System.Windows.Forms.Button deleteButton_odbiorca;
         private System.Windows.Forms.Button editButton_odbiorca;
->>>>>>> origin/master
+
     }
 }
 

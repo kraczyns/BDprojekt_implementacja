@@ -16,13 +16,10 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         public Form1()
         {
             InitializeComponent();
-<<<<<<< HEAD
             DB.showDataFromMessage(messageTableView, "");
             DB.showData("kurier", messangerTableView);
-=======
-            DB.showDataFromMessage(messageTableView);
+            DB.showDataFromMessage(messageTableView, "");
             DB.showDataFromMessenger(messangerTableView);
->>>>>>> origin/master
             DB.showData("pojazd", vehicleTableView);
             DB.showData("grafik", graphicTableView);
             DB.showDataFromOdbiorca(odbiorcaTableView);
@@ -35,15 +32,12 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         private void addButton_message_Click(object sender, EventArgs e)
         {
             MessageDesign msgForm = new MessageDesign();
-<<<<<<< HEAD
             msgForm.Show();
             DB.showDataFromMessage(messageTableView, "");
-=======
             msgForm.ShowDialog();
-            DB.showDataFromMessage(messageTableView);
+            DB.showDataFromMessage(messageTableView, "");
             DB.showDataFromOdbiorca(odbiorcaTableView);
 
->>>>>>> origin/master
         }
 
         private void refreshButton_Click(object sender, EventArgs e)
@@ -94,7 +88,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
                 MessageDesign msgForm = new MessageDesign(id, messanger, recipient_name, recipient_surname, addressIn, city_name, sizeIn, statusIn, priorityIn, paymentAfter, costIn, sendDate, receiveDate);
                 msgForm.ShowDialog();
                 DB.showDataFromOdbiorca(odbiorcaTableView);
-                DB.showDataFromMessage(messageTableView);
+                DB.showDataFromMessage(messageTableView, "");
         }
 
         private void messangerListButton_Click(object sender, EventArgs e)
@@ -103,7 +97,6 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             msgTopList.Show();
         }
 
-<<<<<<< HEAD
         private void searchMessangerButton_Click(object sender, EventArgs e)
         {
             string search = messangerPattern.Text;
@@ -120,7 +113,6 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             DB.showMessagesByStatus(messageTableView, "gotowa", string.IsNullOrWhiteSpace(messangerPattern.Text), messangerPattern.Text);
         }
 
-=======
         private void addButton_messanger_Click(object sender, EventArgs e)
         {
             MessengerDesign msgrForm = new MessengerDesign();
@@ -187,7 +179,5 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             DB.showDataFromOdbiorca(odbiorcaTableView);
         }
 
-
->>>>>>> origin/master
     }
 }
