@@ -20,6 +20,8 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             DB.showDataFromMessenger(messangerTableView);
             DB.showData("pojazd", vehicleTableView);
             DB.showData("grafik", graphicTableView);
+            DB.showDataFromOdbiorca(odbiorcaTableView);
+
 
         }
 
@@ -28,8 +30,10 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         private void addButton_message_Click(object sender, EventArgs e)
         {
             MessageDesign msgForm = new MessageDesign();
-            msgForm.Show();
+            msgForm.ShowDialog();
             DB.showDataFromMessage(messageTableView);
+            DB.showDataFromOdbiorca(odbiorcaTableView);
+
         }
 
         private void refreshButton_Click(object sender, EventArgs e)
@@ -78,7 +82,9 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
                 int statusIn = 1;// (int)messageTableView.Rows[row].Cells[11].Value;
                 int id = (int)messageTableView.Rows[row].Cells[0].Value;
                 MessageDesign msgForm = new MessageDesign(id, messanger, recipient_name, recipient_surname, addressIn, city_name, sizeIn, statusIn, priorityIn, paymentAfter, costIn, sendDate, receiveDate);
-                msgForm.Show();
+                msgForm.ShowDialog();
+                DB.showDataFromOdbiorca(odbiorcaTableView);
+                DB.showDataFromMessage(messageTableView);
         }
 
         private void messangerListButton_Click(object sender, EventArgs e)
@@ -119,6 +125,40 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             DB.deleteAllDataFromMessenger();
             DB.showDataFromMessenger(messangerTableView);
         }
+
+
+        private void addButton_odbiorca_Click(object sender, EventArgs e)
+        {
+            OdbiorcaDesign obrForm = new OdbiorcaDesign();
+            obrForm.ShowDialog();
+            DB.showDataFromOdbiorca(odbiorcaTableView);
+
+        }
+
+        private void editButton_odbiorca_Click(object sender, EventArgs e)
+        {
+            int row = odbiorcaTableView.CurrentCellAddress.Y;
+
+            string name = odbiorcaTableView.Rows[row].Cells[1].Value.ToString();
+            string surname = odbiorcaTableView.Rows[row].Cells[2].Value.ToString();
+            int id = (int)odbiorcaTableView.Rows[row].Cells[0].Value;
+            OdbiorcaDesign msgForm = new OdbiorcaDesign(id, name, surname);
+            msgForm.ShowDialog();
+            DB.showDataFromOdbiorca(odbiorcaTableView);
+        }
+
+        private void deleteButton_odbiorca_Click(object sender, EventArgs e)
+        {
+            DB.deleteDataFromOdbiorca(odbiorcaTableView);
+            DB.showDataFromOdbiorca(odbiorcaTableView);
+        }
+
+        private void deleteAllButton_odbiorca_Click(object sender, EventArgs e)
+        {
+            DB.deleteAllDataFromOdbiorca();
+            DB.showDataFromOdbiorca(odbiorcaTableView);
+        }
+
 
     }
 }

@@ -55,6 +55,12 @@
             this.graphicTableView = new System.Windows.Forms.DataGridView();
             this.deleteButton_graphic = new System.Windows.Forms.Button();
             this.editButton_graphic = new System.Windows.Forms.Button();
+            this.odbiorcaTab = new System.Windows.Forms.TabPage();
+            this.addButton_odbiorca = new System.Windows.Forms.Button();
+            this.deleteAllButton_odbiorca = new System.Windows.Forms.Button();
+            this.odbiorcaTableView = new System.Windows.Forms.DataGridView();
+            this.deleteButton_odbiorca = new System.Windows.Forms.Button();
+            this.editButton_odbiorca = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.messangerListButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.messageTableView)).BeginInit();
@@ -66,12 +72,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.vehicleTableView)).BeginInit();
             this.graphicTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.graphicTableView)).BeginInit();
+            this.odbiorcaTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.odbiorcaTableView)).BeginInit();
             this.SuspendLayout();
             // 
             // messageTableView
             // 
             this.messageTableView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.messageTableView.Location = new System.Drawing.Point(6, 6);
+            this.messageTableView.Location = new System.Drawing.Point(8, 6);
             this.messageTableView.Name = "messageTableView";
             this.messageTableView.Size = new System.Drawing.Size(659, 284);
             this.messageTableView.TabIndex = 3;
@@ -82,6 +90,7 @@
             this.postTab.Controls.Add(this.messangerTab);
             this.postTab.Controls.Add(this.carTab);
             this.postTab.Controls.Add(this.graphicTab);
+            this.postTab.Controls.Add(this.odbiorcaTab);
             this.postTab.Location = new System.Drawing.Point(23, 114);
             this.postTab.Name = "postTab";
             this.postTab.SelectedIndex = 0;
@@ -142,6 +151,7 @@
             this.deleteAllButton_message.TabIndex = 3;
             this.deleteAllButton_message.Text = "Usuń wszystko";
             this.deleteAllButton_message.UseVisualStyleBackColor = true;
+            this.deleteAllButton_message.Click += new System.EventHandler(this.deleteAllButton_message_Click);
             // 
             // deleteButton_message
             // 
@@ -201,7 +211,7 @@
             // messangerTableView
             // 
             this.messangerTableView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.messangerTableView.Location = new System.Drawing.Point(7, 6);
+            this.messangerTableView.Location = new System.Drawing.Point(8, 6);
             this.messangerTableView.Name = "messangerTableView";
             this.messangerTableView.Size = new System.Drawing.Size(659, 284);
             this.messangerTableView.TabIndex = 8;
@@ -344,6 +354,69 @@
             this.editButton_graphic.Text = "Edytuj";
             this.editButton_graphic.UseVisualStyleBackColor = true;
             // 
+            // odbiorcaTab
+            // 
+            this.odbiorcaTab.Controls.Add(this.addButton_odbiorca);
+            this.odbiorcaTab.Controls.Add(this.deleteAllButton_odbiorca);
+            this.odbiorcaTab.Controls.Add(this.odbiorcaTableView);
+            this.odbiorcaTab.Controls.Add(this.deleteButton_odbiorca);
+            this.odbiorcaTab.Controls.Add(this.editButton_odbiorca);
+            this.odbiorcaTab.Location = new System.Drawing.Point(4, 22);
+            this.odbiorcaTab.Name = "odbiorcaTab";
+            this.odbiorcaTab.Padding = new System.Windows.Forms.Padding(3);
+            this.odbiorcaTab.Size = new System.Drawing.Size(673, 406);
+            this.odbiorcaTab.TabIndex = 4;
+            this.odbiorcaTab.Text = "Odbiorca";
+            this.odbiorcaTab.UseVisualStyleBackColor = true;
+            // 
+            // addButton_odbiorca
+            // 
+            this.addButton_odbiorca.Location = new System.Drawing.Point(277, 361);
+            this.addButton_odbiorca.Name = "addButton_odbiorca";
+            this.addButton_odbiorca.Size = new System.Drawing.Size(127, 39);
+            this.addButton_odbiorca.TabIndex = 7;
+            this.addButton_odbiorca.Text = "Dodaj";
+            this.addButton_odbiorca.UseVisualStyleBackColor = true;
+            this.addButton_odbiorca.Click += new System.EventHandler(this.addButton_odbiorca_Click);
+            // 
+            // deleteAllButton_odbiorca
+            // 
+            this.deleteAllButton_odbiorca.Location = new System.Drawing.Point(416, 296);
+            this.deleteAllButton_odbiorca.Name = "deleteAllButton_odbiorca";
+            this.deleteAllButton_odbiorca.Size = new System.Drawing.Size(140, 54);
+            this.deleteAllButton_odbiorca.TabIndex = 10;
+            this.deleteAllButton_odbiorca.Text = "Usuń wszystko";
+            this.deleteAllButton_odbiorca.UseVisualStyleBackColor = true;
+            this.deleteAllButton_odbiorca.Click += new System.EventHandler(this.deleteAllButton_odbiorca_Click);
+            // 
+            // odbiorcaTableView
+            // 
+            this.odbiorcaTableView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.odbiorcaTableView.Location = new System.Drawing.Point(8, 6);
+            this.odbiorcaTableView.Name = "odbiorcaTableView";
+            this.odbiorcaTableView.Size = new System.Drawing.Size(659, 284);
+            this.odbiorcaTableView.TabIndex = 0;
+            // 
+            // deleteButton_odbiorca
+            // 
+            this.deleteButton_odbiorca.Location = new System.Drawing.Point(147, 327);
+            this.deleteButton_odbiorca.Name = "deleteButton_odbiorca";
+            this.deleteButton_odbiorca.Size = new System.Drawing.Size(235, 23);
+            this.deleteButton_odbiorca.TabIndex = 8;
+            this.deleteButton_odbiorca.Text = "Usuń";
+            this.deleteButton_odbiorca.UseVisualStyleBackColor = true;
+            this.deleteButton_odbiorca.Click += new System.EventHandler(this.deleteButton_odbiorca_Click);
+            // 
+            // editButton_odbiorca
+            // 
+            this.editButton_odbiorca.Location = new System.Drawing.Point(147, 296);
+            this.editButton_odbiorca.Name = "editButton_odbiorca";
+            this.editButton_odbiorca.Size = new System.Drawing.Size(235, 25);
+            this.editButton_odbiorca.TabIndex = 9;
+            this.editButton_odbiorca.Text = "Edytuj";
+            this.editButton_odbiorca.UseVisualStyleBackColor = true;
+            this.editButton_odbiorca.Click += new System.EventHandler(this.editButton_odbiorca_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -384,6 +457,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.vehicleTableView)).EndInit();
             this.graphicTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.graphicTableView)).EndInit();
+            this.odbiorcaTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.odbiorcaTableView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -420,6 +495,12 @@
         private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.Button deleteReceivedButton;
         private System.Windows.Forms.Button messangerListButton;
+        private System.Windows.Forms.TabPage odbiorcaTab;
+        private System.Windows.Forms.Button addButton_odbiorca;
+        private System.Windows.Forms.Button deleteAllButton_odbiorca;
+        private System.Windows.Forms.DataGridView odbiorcaTableView;
+        private System.Windows.Forms.Button deleteButton_odbiorca;
+        private System.Windows.Forms.Button editButton_odbiorca;
     }
 }
 
