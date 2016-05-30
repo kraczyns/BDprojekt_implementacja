@@ -16,7 +16,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         public Form1()
         {
             InitializeComponent();
-            DB.showDataFromMessage(messageTableView);
+            DB.showDataFromMessage(messageTableView, "");
             DB.showData("kurier", messangerTableView);
             DB.showData("pojazd", vehicleTableView);
             DB.showData("grafik", graphicTableView);
@@ -28,35 +28,35 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         {
             MessageDesign msgForm = new MessageDesign();
             msgForm.Show();
-            DB.showDataFromMessage(messageTableView);
+            DB.showDataFromMessage(messageTableView, "");
         }
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
-            DB.showDataFromMessage(messageTableView);
+            DB.showDataFromMessage(messageTableView, "");
         }
 
         public void refresh()
         {
-            DB.showDataFromMessage(messageTableView);
+            DB.showDataFromMessage(messageTableView, "");
         }
 
         private void deleteButton_message_Click(object sender, EventArgs e)
         {
             DB.deleteDataFromMessage(messageTableView);
-            DB.showDataFromMessage(messageTableView);
+            DB.showDataFromMessage(messageTableView, "");
         }
 
         private void deleteAllButton_message_Click(object sender, EventArgs e)
         {
             DB.deleteAllDataFromMessage();
-            DB.showDataFromMessage(messageTableView);
+            DB.showDataFromMessage(messageTableView, "");
         }
 
         private void deleteReceivedButton_Click(object sender, EventArgs e)
         {
             DB.deleteReceivedMessages();
-            DB.showDataFromMessage(messageTableView);
+            DB.showDataFromMessage(messageTableView, "");
         }
 
         private void editButton_message_Click(object sender, EventArgs e)
@@ -84,6 +84,22 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         {
             MessangersTopList msgTopList = new MessangersTopList();
             msgTopList.Show();
+        }
+
+        private void searchMessangerButton_Click(object sender, EventArgs e)
+        {
+            string search = messangerPattern.Text;
+            DB.showFoundMessagesByMessangers(messageTableView, search);
+        }
+
+        private void receivedMessagesButton_Click(object sender, EventArgs e)
+        {
+            DB.showMessagesByStatus(messageTableView, "dostarczona", string.IsNullOrWhiteSpace(messangerPattern.Text), messangerPattern.Text);
+        }
+
+        private void readyMessagesButton_Click(object sender, EventArgs e)
+        {
+            DB.showMessagesByStatus(messageTableView, "gotowa", string.IsNullOrWhiteSpace(messangerPattern.Text), messangerPattern.Text);
         }
 
     }

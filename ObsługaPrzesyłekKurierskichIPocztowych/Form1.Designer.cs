@@ -57,6 +57,13 @@
             this.editButton_graphic = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.messangerListButton = new System.Windows.Forms.Button();
+            this.searchForMessanger = new System.Windows.Forms.Label();
+            this.messangerPattern = new System.Windows.Forms.TextBox();
+            this.searchMessangerButton = new System.Windows.Forms.Button();
+            this.receivedMessagesButton = new System.Windows.Forms.Button();
+            this.readyMessagesButton = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.messageTableView)).BeginInit();
             this.postTab.SuspendLayout();
             this.messageTab.SuspendLayout();
@@ -66,6 +73,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.vehicleTableView)).BeginInit();
             this.graphicTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.graphicTableView)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // messageTableView
@@ -82,7 +91,7 @@
             this.postTab.Controls.Add(this.messangerTab);
             this.postTab.Controls.Add(this.carTab);
             this.postTab.Controls.Add(this.graphicTab);
-            this.postTab.Location = new System.Drawing.Point(23, 114);
+            this.postTab.Location = new System.Drawing.Point(23, 171);
             this.postTab.Name = "postTab";
             this.postTab.SelectedIndex = 0;
             this.postTab.Size = new System.Drawing.Size(681, 432);
@@ -353,19 +362,90 @@
             // 
             // messangerListButton
             // 
-            this.messangerListButton.Location = new System.Drawing.Point(228, 54);
+            this.messangerListButton.Location = new System.Drawing.Point(33, 50);
             this.messangerListButton.Name = "messangerListButton";
-            this.messangerListButton.Size = new System.Drawing.Size(256, 36);
+            this.messangerListButton.Size = new System.Drawing.Size(377, 29);
             this.messangerListButton.TabIndex = 6;
             this.messangerListButton.Text = "Ranking kurierów";
             this.messangerListButton.UseVisualStyleBackColor = true;
             this.messangerListButton.Click += new System.EventHandler(this.messangerListButton_Click);
             // 
+            // searchForMessanger
+            // 
+            this.searchForMessanger.AutoSize = true;
+            this.searchForMessanger.Location = new System.Drawing.Point(6, 34);
+            this.searchForMessanger.Name = "searchForMessanger";
+            this.searchForMessanger.Size = new System.Drawing.Size(85, 13);
+            this.searchForMessanger.TabIndex = 7;
+            this.searchForMessanger.Text = "Przesyłki kuriera";
+            // 
+            // messangerPattern
+            // 
+            this.messangerPattern.Location = new System.Drawing.Point(97, 34);
+            this.messangerPattern.Name = "messangerPattern";
+            this.messangerPattern.Size = new System.Drawing.Size(177, 20);
+            this.messangerPattern.TabIndex = 8;
+            // 
+            // searchMessangerButton
+            // 
+            this.searchMessangerButton.Location = new System.Drawing.Point(295, 34);
+            this.searchMessangerButton.Name = "searchMessangerButton";
+            this.searchMessangerButton.Size = new System.Drawing.Size(75, 23);
+            this.searchMessangerButton.TabIndex = 9;
+            this.searchMessangerButton.Text = "Szukaj";
+            this.searchMessangerButton.UseVisualStyleBackColor = true;
+            this.searchMessangerButton.Click += new System.EventHandler(this.searchMessangerButton_Click);
+            // 
+            // receivedMessagesButton
+            // 
+            this.receivedMessagesButton.Location = new System.Drawing.Point(11, 32);
+            this.receivedMessagesButton.Name = "receivedMessagesButton";
+            this.receivedMessagesButton.Size = new System.Drawing.Size(212, 23);
+            this.receivedMessagesButton.TabIndex = 10;
+            this.receivedMessagesButton.Text = "Dostarczone przesyłki";
+            this.receivedMessagesButton.UseVisualStyleBackColor = true;
+            this.receivedMessagesButton.Click += new System.EventHandler(this.receivedMessagesButton_Click);
+            // 
+            // readyMessagesButton
+            // 
+            this.readyMessagesButton.Location = new System.Drawing.Point(11, 61);
+            this.readyMessagesButton.Name = "readyMessagesButton";
+            this.readyMessagesButton.Size = new System.Drawing.Size(212, 23);
+            this.readyMessagesButton.TabIndex = 11;
+            this.readyMessagesButton.Text = "Gotowe przesyłki";
+            this.readyMessagesButton.UseVisualStyleBackColor = true;
+            this.readyMessagesButton.Click += new System.EventHandler(this.readyMessagesButton_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.receivedMessagesButton);
+            this.groupBox1.Controls.Add(this.readyMessagesButton);
+            this.groupBox1.Location = new System.Drawing.Point(448, 68);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(229, 110);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Filtruj";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.searchForMessanger);
+            this.groupBox2.Controls.Add(this.messangerPattern);
+            this.groupBox2.Controls.Add(this.searchMessangerButton);
+            this.groupBox2.Location = new System.Drawing.Point(33, 85);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(376, 80);
+            this.groupBox2.TabIndex = 14;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Szukaj";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(716, 558);
+            this.ClientSize = new System.Drawing.Size(716, 615);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.messangerListButton);
             this.Controls.Add(this.postTab);
             this.Controls.Add(this.label2);
@@ -380,6 +460,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.vehicleTableView)).EndInit();
             this.graphicTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.graphicTableView)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -416,6 +499,13 @@
         private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.Button deleteReceivedButton;
         private System.Windows.Forms.Button messangerListButton;
+        private System.Windows.Forms.Label searchForMessanger;
+        private System.Windows.Forms.TextBox messangerPattern;
+        private System.Windows.Forms.Button searchMessangerButton;
+        private System.Windows.Forms.Button receivedMessagesButton;
+        private System.Windows.Forms.Button readyMessagesButton;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
 

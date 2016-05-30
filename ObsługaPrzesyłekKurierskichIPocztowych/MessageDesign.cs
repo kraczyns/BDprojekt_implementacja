@@ -73,12 +73,14 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
                     if (!msngAuto)
                         msng = messangersBox.Text;
                     else
-                        msng = messangerFound.Text;
+                        msng = messangersBox.Text;
                     DB.insertDataToMessage(msng, recipientName.Text, recipientSurname.Text, address.Text, city.Text, size.SelectedIndex, status.SelectedIndex, priority.Checked, payLater, Int32.Parse(payCost), sendDate, receiveDate);
                 }
-                    
+
                 else
+                {
                     DB.editDataInMessage(_id, messangersBox.Text.ToString(), recipientName.Text, recipientSurname.Text, address.Text, city.Text, size.SelectedIndex, status.SelectedIndex, priority.Checked, payLater, Int32.Parse(payCost), sendDate, receiveDate);
+                }
             }
             catch (Exception ex)
             {
@@ -94,7 +96,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
 
         private void messangerWithFewerJobButton_Click(object sender, EventArgs e)
         {
-            messangerFound.Text = DB.findTheMostAvailableMessanger();
+            messangersBox.Text = DB.findTheMostAvailableMessanger();
             msngAuto = true;
         }
     }

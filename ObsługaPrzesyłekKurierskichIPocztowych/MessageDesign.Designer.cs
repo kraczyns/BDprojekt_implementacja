@@ -51,11 +51,10 @@
             this.paymentLater = new System.Windows.Forms.CheckBox();
             this.priority = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.editAddLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.city = new System.Windows.Forms.ComboBox();
             this.messangerWithFewerJobButton = new System.Windows.Forms.Button();
-            this.messangerFound = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.adressBox.SuspendLayout();
             this.recipientBox.SuspendLayout();
@@ -283,16 +282,16 @@
             this.label4.TabIndex = 69;
             this.label4.Text = "Rozmiar";
             // 
-            // label1
+            // editAddLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label1.Location = new System.Drawing.Point(198, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(229, 20);
-            this.label1.TabIndex = 87;
-            this.label1.Text = "Dodawanie/edycja przesyłki";
+            this.editAddLabel.AutoSize = true;
+            this.editAddLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.editAddLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.editAddLabel.Location = new System.Drawing.Point(198, 22);
+            this.editAddLabel.Name = "editAddLabel";
+            this.editAddLabel.Size = new System.Drawing.Size(229, 20);
+            this.editAddLabel.TabIndex = 87;
+            this.editAddLabel.Text = "Dodawanie/edycja przesyłki";
             // 
             // label2
             // 
@@ -316,20 +315,13 @@
             // 
             // messangerWithFewerJobButton
             // 
-            this.messangerWithFewerJobButton.Location = new System.Drawing.Point(351, 45);
+            this.messangerWithFewerJobButton.Location = new System.Drawing.Point(352, 55);
             this.messangerWithFewerJobButton.Name = "messangerWithFewerJobButton";
             this.messangerWithFewerJobButton.Size = new System.Drawing.Size(192, 34);
             this.messangerWithFewerJobButton.TabIndex = 90;
             this.messangerWithFewerJobButton.Text = "Kurier z najmniejszą liczbą zleceń";
             this.messangerWithFewerJobButton.UseVisualStyleBackColor = true;
             this.messangerWithFewerJobButton.Click += new System.EventHandler(this.messangerWithFewerJobButton_Click);
-            // 
-            // messangerFound
-            // 
-            this.messangerFound.Location = new System.Drawing.Point(351, 85);
-            this.messangerFound.Name = "messangerFound";
-            this.messangerFound.Size = new System.Drawing.Size(192, 20);
-            this.messangerFound.TabIndex = 91;
             // 
             // label3
             // 
@@ -346,11 +338,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(614, 408);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.messangerFound);
             this.Controls.Add(this.messangerWithFewerJobButton);
             this.Controls.Add(this.city);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.editAddLabel);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.adressBox);
             this.Controls.Add(this.recipientBox);
@@ -404,11 +395,10 @@
         private System.Windows.Forms.CheckBox paymentLater;
         private System.Windows.Forms.CheckBox priority;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label editAddLabel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox city;
         private System.Windows.Forms.Button messangerWithFewerJobButton;
-        private System.Windows.Forms.TextBox messangerFound;
         private System.Windows.Forms.Label label3;
     }
 }

@@ -35,6 +35,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         MySqlDataAdapter adapter;
         DataTable table;
 
+        //otworzenie odpowiedniej bazy danych przez MySqlConnection
         public DatabaseAdministration()
         {
             connection = new MySqlConnection("datasource = localhost;port = 3306; Initial Catalog = 'poczta'; username = root; password=Stokrotka1");
@@ -44,9 +45,9 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         //OBSŁUGA PRZESYŁKI
 
         //wyświetlanie tabeli przesyłka
-        public void showDataFromMessage(DataGridView view)
+        public void showDataFromMessage(DataGridView view, string myString)
         {
-            string showQuery = "SELECT id_przesylki AS Numer, CONCAT_WS (' ', odbiorca.imie, odbiorca.nazwisko) AS Odbiorca, CONCAT_WS (' ', kurier.imie, kurier.nazwisko) AS Kurier, placowka.adres AS Placówka, rozmiar AS Rozmiar, czy_priorytet AS Priorytet, data_nadania AS 'Data Nadania', data_odbioru AS 'Data Odbioru', czy_za_pobraniem AS 'Płatność Przy Odbiorze', należność AS 'Należność', adres_doreczenia AS 'Adres Doręczenia', status AS Status FROM przesylka INNER JOIN odbiorca ON przesylka.id_odbiorcy = odbiorca.id_odbiorcy INNER JOIN kurier ON przesylka.id_kuriera = kurier.id_kuriera INNER JOIN placowka ON przesylka.id_placowki_nadania = placowka.id_placowki";
+            string showQuery = "SELECT id_przesylki AS Numer, CONCAT_WS (' ', odbiorca.imie, odbiorca.nazwisko) AS Odbiorca, CONCAT_WS (' ', kurier.imie, kurier.nazwisko) AS Kurier, placowka.adres AS Placówka, rozmiar AS Rozmiar, czy_priorytet AS Priorytet, data_nadania AS 'Data Nadania', data_odbioru AS 'Data Odbioru', czy_za_pobraniem AS 'Płatność Przy Odbiorze', należność AS 'Należność', adres_doreczenia AS 'Adres Doręczenia', status AS Status FROM przesylka INNER JOIN odbiorca ON przesylka.id_odbiorcy = odbiorca.id_odbiorcy INNER JOIN kurier ON przesylka.id_kuriera = kurier.id_kuriera INNER JOIN placowka ON przesylka.id_placowki_nadania = placowka.id_placowki "+ myString +";";
             command = new MySqlCommand(showQuery, connection);
             adapter = new MySqlDataAdapter(command);
             table = new DataTable();
@@ -298,6 +299,24 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             msng = DR[0].ToString();
             DR.Close();
             return msng;
+        }
+
+        //wyszukanie przesyłek po kurierze
+        public void showFoundMessagesByMessangers(DataGridView view, string pattern)
+        {
+            string searchQuery = "WHERE CONCAT(kurier.imie, ' ', kurier.nazwisko) LIKE '" + pattern + "%' OR CONCAT(kurier.nazwisko, ' ', kurier.imie) LIKE '" + pattern + "%'";
+            showDataFromMessage(view, searchQuery);
+        }
+
+        //wyszukanie wszystkich dostarczonych lub gotowych przesyłek i wyświetlenie ich
+        public void showMessagesByStatus(DataGridView view, string searchedStatus, bool msngSearched, string pattern)
+        {
+            string searchQuery;
+            if (msngSearched)
+                searchQuery = "WHERE przesylka.status = '" + searchedStatus + "'";
+            else
+                searchQuery = "WHERE (CONCAT(kurier.imie, ' ', kurier.nazwisko) LIKE '" + pattern + "%' OR CONCAT(kurier.nazwisko, ' ', kurier.imie) LIKE '" + pattern + "%' )AND przesylka.status = '" + searchedStatus + "'";
+            showDataFromMessage(view, searchQuery);
         }
 
         //OGÓLNE FUNKCJE DLA TABEL, bez specyfikacji dla której konkretnie
