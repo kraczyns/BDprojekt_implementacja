@@ -32,8 +32,6 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
         private void addButton_message_Click(object sender, EventArgs e)
         {
             MessageDesign msgForm = new MessageDesign();
-            msgForm.Show();
-            DB.showDataFromMessage(messageTableView, "");
             msgForm.ShowDialog();
             DB.showDataFromMessage(messageTableView, "");
             DB.showDataFromOdbiorca(odbiorcaTableView);
@@ -70,25 +68,37 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
 
         private void editButton_message_Click(object sender, EventArgs e)
         {
-                int row = messageTableView.CurrentCellAddress.Y;
-                string[] names = messageTableView.Rows[row].Cells[1].Value.ToString().Split(' ');
-                string recipient_name = names[0];
-                string recipient_surname = names[1];
-                string messanger = messageTableView.Rows[row].Cells[2].Value.ToString();
-                string city_name = messageTableView.Rows[row].Cells[3].Value.ToString(); ;
-                int sizeIn = (int)messageTableView.Rows[row].Cells[4].Value;
-                bool priorityIn = Convert.ToBoolean(messageTableView.Rows[row].Cells[5].Value);
-                string sendDate = messageTableView.Rows[row].Cells[6].Value.ToString();
-                string receiveDate = messageTableView.Rows[row].Cells[7].Value.ToString();
-                bool paymentAfter = !Convert.IsDBNull(messageTableView.Rows[row].Cells[8].Value);
-                int costIn = (int)messageTableView.Rows[row].Cells[9].Value;
-                string addressIn = messageTableView.Rows[row].Cells[10].Value.ToString();
-                int statusIn = 1;// (int)messageTableView.Rows[row].Cells[11].Value;
-                int id = (int)messageTableView.Rows[row].Cells[0].Value;
-                MessageDesign msgForm = new MessageDesign(id, messanger, recipient_name, recipient_surname, addressIn, city_name, sizeIn, statusIn, priorityIn, paymentAfter, costIn, sendDate, receiveDate);
-                msgForm.ShowDialog();
-                DB.showDataFromOdbiorca(odbiorcaTableView);
-                DB.showDataFromMessage(messageTableView, "");
+            int row = messageTableView.CurrentCellAddress.Y;
+            string[] names = messageTableView.Rows[row].Cells[1].Value.ToString().Split(' ');
+            string recipient_name = names[0];
+            string recipient_surname = names[1];
+            string messanger = messageTableView.Rows[row].Cells[2].Value.ToString();
+            string city_name = messageTableView.Rows[row].Cells[3].Value.ToString(); ;
+            int sizeIn = (int)messageTableView.Rows[row].Cells[4].Value;
+            bool priorityIn = Convert.ToBoolean(messageTableView.Rows[row].Cells[5].Value);
+            string sendDate = messageTableView.Rows[row].Cells[6].Value.ToString();
+            string receiveDate = messageTableView.Rows[row].Cells[7].Value.ToString();
+            bool paymentAfter = !Convert.IsDBNull(messageTableView.Rows[row].Cells[8].Value);
+            int costIn = (int)messageTableView.Rows[row].Cells[9].Value;
+            string addressIn = messageTableView.Rows[row].Cells[10].Value.ToString();
+            string statusIn = messageTableView.Rows[row].Cells[11].Value.ToString();
+            int statusInInt;
+            if (statusIn == "gotowa")
+                statusInInt = 1;
+            else if (statusIn == "u kuriera")
+                statusInInt = 2;
+            else
+            {
+                statusInInt = 3;
+                receiveDate = "";
+            }
+
+            int id = (int)messageTableView.Rows[row].Cells[0].Value;
+
+            MessageDesign msgForm = new MessageDesign(id, messanger, recipient_name, recipient_surname, addressIn, city_name, sizeIn, statusInInt, priorityIn, paymentAfter, costIn, sendDate, receiveDate);
+            msgForm.ShowDialog();
+            DB.showDataFromOdbiorca(odbiorcaTableView);
+            DB.showDataFromMessage(messageTableView, "");
         }
 
         private void messangerListButton_Click(object sender, EventArgs e)

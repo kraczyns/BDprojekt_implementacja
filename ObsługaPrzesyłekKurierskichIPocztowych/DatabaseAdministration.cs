@@ -205,11 +205,11 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             string searchQuery;
             if (status == 2) // jeżeli przesyłkę dostarczono, istnieje data dostarczenia
             {
-                searchQuery = "INSERT INTO przesylka (id_odbiorcy, id_kuriera, id_placowki_nadania, rozmiar, czy_priorytet, data_nadania, data_odbioru, adres_doreczenia, status, należność) VALUES (" + recipientId + ", " + msngId + ", " + cityId + ", " + _size + ", " + priority + ", '" + sendDate + "', '" + receiveDate + "', '" + address + "', '" + _status + "'," + cost + ")";
+                searchQuery = "INSERT INTO przesylka (id_odbiorcy, id_kuriera, id_placowki_nadania, rozmiar, czy_priorytet, data_nadania, data_odbioru, adres_doreczenia, status, należność, czy_za_pobraniem) VALUES (" + recipientId + ", " + msngId + ", " + cityId + ", " + _size + ", " + priority + ", '" + sendDate + "', '" + receiveDate + "', '" + address + "', '" + _status + "'," + cost + "," + paymentAfter + ")";
             }
             else // jeżeli przesyłki niedostarczono, nie ma daty dostarczenia
             {
-                searchQuery = "INSERT INTO przesylka (id_odbiorcy, id_kuriera, id_placowki_nadania, rozmiar, czy_priorytet, data_nadania, adres_doreczenia, status, należność) VALUES (" + recipientId + ", " + msngId + ", " + cityId + ", " + _size + ", " + priority + ", '" + sendDate + "', '" + address + "', '" + _status + "'," + cost + ")";
+                searchQuery = "INSERT INTO przesylka (id_odbiorcy, id_kuriera, id_placowki_nadania, rozmiar, czy_priorytet, data_nadania, adres_doreczenia, status, należność, czy_za_pobraniem) VALUES (" + recipientId + ", " + msngId + ", " + cityId + ", " + _size + ", " + priority + ", '" + sendDate + "', '" + address + "', '" + _status + "'," + cost +"," +paymentAfter+  ")";
             }
             command = new MySqlCommand(searchQuery, connection);
             adapter = new MySqlDataAdapter(command);
@@ -236,7 +236,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
                 ", id_placowki_nadania=" + cityId + ", rozmiar=" + _size +
                 ", czy_priorytet=" + priority + ", data_nadania='" + sendDate +
                 "', data_odbioru='" + receiveDate + "', adres_doreczenia='" + address +
-                "', status='" + _status + "', należność=" + cost + " WHERE id_przesylki=" + id + ";";
+                "', status='" + _status + "', czy_za_pobraniem=" + paymentAfter + ", należność=" + cost + " WHERE id_przesylki=" + id + ";";
 
             }
             else // jeżeli przesyłki niedostarczono, nie ma daty dostarczenia
@@ -246,7 +246,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
                                ", id_placowki_nadania=" + cityId + ", rozmiar=" + _size +
                                ", czy_priorytet=" + priority + ", data_nadania='" + sendDate +
                                "', adres_doreczenia='" + address +
-                               "', status='" + _status + "', należność=" + cost + " WHERE id_przesylki=" + id + ";";
+                               "', status='" + _status + "', czy_za_pobraniem=" + paymentAfter + ", należność=" + cost + " WHERE id_przesylki=" + id + ";";
             }
 
 

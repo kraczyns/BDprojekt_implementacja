@@ -29,10 +29,11 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             _editMode = true;
             _id = id;
             InitializeComponent();
-            dateSend.Value = DateTime.ParseExact(sendDate, "dd.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            Console.WriteLine(dateSend);
+            dateSend.Value = DateTime.ParseExact(sendDate, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
             if (receiveDate != "")
             {
-                dateReceive.Value = DateTime.ParseExact(receiveDate, "dd.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                dateReceive.Value = DateTime.ParseExact(receiveDate, "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
             }
             status.SelectedIndex = statusIn - 1;
             messangersBox.SelectedItem = messangersBox.FindStringExact(messanger);//messanger;
@@ -43,7 +44,7 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
             recipientSurname.Text = recipient_surname;
             address.Text = addressIn;
             city.Text = city_name;
-            size.SelectedIndex = sizeIn;
+            size.SelectedIndex = sizeIn-1;
             priority.Checked = priorityIn;
             paymentLater.Checked = paymentAfter;
             cost.Text = costIn.ToString();
@@ -58,7 +59,6 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
 
             string sendDate = dateSend.Value.ToString("yyyy-MM-dd");
             string receiveDate = dateReceive.Value.ToString("yyyy-MM-dd");
-            Console.WriteLine(receiveDate);
             string payCost = cost.Text;
             bool payLater = false;
             if (paymentLater.Checked)
@@ -66,6 +66,8 @@ namespace ObsługaPrzesyłekKurierskichIPocztowych
                 payLater = true;
                 payCost = cost.Text;
             }
+            Console.WriteLine(payLater);
+
             try
             {
                 if (!_editMode)
